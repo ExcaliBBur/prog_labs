@@ -38,7 +38,7 @@ public class Main {
         }
         for (int i = 0; i < 13; i ++) {
             for (int j = 0; j < 20; j++) {
-                System.out.printf("%6.2f",s[i][j]);
+                System.out.printf("%7.2f",s[i][j]);
             }
             System.out.println();
         }
