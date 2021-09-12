@@ -1,3 +1,4 @@
+//Вариант - 335989
 public class Main {
     public static void main(String[] args) {
         long [] c = new long[13];
