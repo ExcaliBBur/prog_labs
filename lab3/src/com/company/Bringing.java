@@ -1,6 +1,5 @@
 package com.company;
 
-
 public class Bringing extends Entity{
     private final String name;
     private final RunTypes type = RunTypes.FLEW;
