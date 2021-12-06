@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="lab3:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="df6ef5c4-9b48-4715-a74c-1ab8c49a98a1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab1/out/production/lab1/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab1/out/production/lab1/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab1/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab1/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/lab2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab2/lab2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/otchet/otchet.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../lab2/otchet/otchet.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/Flygon.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/Magearna.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/Pansear.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/Simisear.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/Trapinch.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/Vibrava.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/moves/Astonish.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/moves/AuroraBeam.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/moves/Bite.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/moves/Bulldoze.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/moves/Dig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/moves/DragonBreath.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/moves/FlameBurst.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/moves/FurySwipes.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/moves/Incinerate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/moves/Rollout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/moves/Scratch.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab2/out/production/lab2/moves/Screech.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/otchet/otchet.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/otchet/otchet.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/Barkable.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/Barkable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/Beembo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/Beembo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/Bringing.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/Bringing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/FrekenBok.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/FrekenBok.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/Kid.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/Kid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/Runnable.class" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/out/production/lab3/com/company/Runnable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/src/com/company/Barkable.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/src/com/company/Barkable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/src/com/company/Beembo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/src/com/company/Beembo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/src/com/company/Bringing.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/src/com/company/Bringing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/src/com/company/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/src/com/company/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/src/com/company/FrekenBok.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/src/com/company/FrekenBok.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/src/com/company/Kid.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/src/com/company/Kid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3/src/com/company/Runnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3/src/com/company/Runnable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/lab3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/lab3_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab3/com/company/Bed$Voice.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab3/com/company/Bed$Voice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab3/com/company/Beembo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab3/com/company/Beembo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab3/com/company/Kid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab3/com/company/Kid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab3/com/company/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab3/com/company/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab3/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab3/com/company/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="20Y2fhmgM3VP5hBqrwQdoBZ2AsN" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="company" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.company" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="lab3" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="df6ef5c4-9b48-4715-a74c-1ab8c49a98a1" name="Changes" comment="" />
+      <created>1636207312295</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1636207312295</updated>
+      <workItem from="1636207315841" duration="1071000" />
+      <workItem from="1636284395761" duration="19712000" />
+      <workItem from="1636328063262" duration="25000" />
+      <workItem from="1636367119773" duration="1868000" />
+      <workItem from="1636475902857" duration="2169000" />
+      <workItem from="1636986252293" duration="178000" />
+      <workItem from="1637145208925" duration="1287000" />
+      <workItem from="1637262095424" duration="579000" />
+      <workItem from="1637313918740" duration="2475000" />
+      <workItem from="1637319966000" duration="178000" />
+      <workItem from="1638367990902" duration="2959000" />
+      <workItem from="1638435779973" duration="11297000" />
+      <workItem from="1638525878994" duration="9857000" />
+      <workItem from="1638542030952" duration="394000" />
+      <workItem from="1638790782838" duration="1508000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>
