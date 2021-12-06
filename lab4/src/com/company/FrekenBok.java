@@ -13,6 +13,7 @@ public class FrekenBok extends Entity implements Runnable{
         this.name = name;
         story();
     }
+    private void method(){}
     public void story(){
         System.out.println("фрекен Бок '"+name+"' ворвалась в рассказ");
     }

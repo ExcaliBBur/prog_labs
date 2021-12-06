@@ -1,5 +1,8 @@
 package com.company;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+
 public class Main {
     public static void main(String[] args) throws SizeBringingException{
         Bed bed = new Bed("папы");
@@ -7,13 +10,8 @@ public class Main {
         Bed.Voice bed_voiceOut = new Bed.Voice();
         bed_voiceOut.voiceOut();
         Bringing privedenie = new Bringing("4 лаба");
-        try{
-            //size == 1 => маленькое приведение; if size != 1 => SizeBringingException
-            privedenie.flew(bed,1);
-        }
-        catch(SizeBringingException e){
-            System.out.println(e.toString());
-        }
+        //if size != 1 => unchecked exception
+        privedenie.flew(bed, 1);
         bed.endStory();
         privedenie.shattered();
         FrekenBok freken = new FrekenBok("Злюка");
