@@ -33,7 +33,7 @@ public class Main {
         privedenie.following(freken,1);
         Kid malish = new Kid("эмокид");
         // Run - RunType; if (type != "Run") => RunException
-        malish.run(privedenie,"Run");
+        malish.run(privedenie,"Ru");
         Beembo bimbo = new Beembo("коронавирус");
         //non-static вложенные классы
         Beembo.Knowledge bimbo_knowledge = bimbo.new Knowledge();
