@@ -1,13 +1,15 @@
 package com.company.sourse;
 
+import com.company.utilities.DataController;
+
 public enum Color {
-    RED,
-    BLACK,
-    ORANGE,
-    BROWN;
-    public static String list(){
-        String list = "";
-        for (Color n : Color.values()) list += n + ", ";
-        return list.substring(0, list.length()-2);
+    RED(1),
+    BLACK(2),
+    ORANGE(3),
+    BROWN(4);
+
+    public final int value;
+    private Color(int value){
+        this.value = value;
     }
 }

@@ -5,4 +5,11 @@ public class DragonHead {
     public DragonHead(Long size){
         this.size = size;
     }
+    public long getSize(){
+        return size;
+    }
+    @Override
+    public String toString(){
+        return ""+size;
+    }
 }
