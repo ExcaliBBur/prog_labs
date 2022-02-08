@@ -6,6 +6,8 @@ import com.company.sourse.Coordinates;
 import com.company.sourse.DragonHead;
 
 
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,6 +28,10 @@ public class DataController {
     private String regex = "-?\\d+[.]\\d+";
     private Pattern pattern = Pattern.compile(regex);
     public static String[] temp = new String[14];
+    public static String fileName;
+    public static FileInputStream fis = null;
+    public static  InputStreamReader isr = null;
+    public static String line;
     public DataController(){
         System.out.println("id было сгенерировано автоматически. ");
         generateId();
@@ -48,6 +54,7 @@ public class DataController {
         setCoordinateY();
         this.coordinates = new Coordinates(x,y);
         setAge();
+        generateCreationDate();
         setWingspan();
         setWeight();
         setColor();
@@ -62,7 +69,8 @@ public class DataController {
     public void setName(){
         try {
             System.out.print("Введите имя: ");
-            name = scanner.nextLine();
+            if (line != null) name = line;
+            else name = scanner.nextLine();
             if ((name.trim().length() == 0) || name == null) throw new IncorrectNameException();
         }catch (IncorrectNameException e){
             System.out.println(e.toString());
@@ -72,7 +80,8 @@ public class DataController {
     public void setColor(){
         System.out.print("Выберите цвет из доступных: "+ Arrays.toString(Color.values()) + ": ");
         try {
-            this.color = Color.valueOf(scanner.nextLine());
+            if (line != null)  this.color = Color.valueOf(line);
+            else this.color = Color.valueOf(scanner.nextLine());
         }catch (IllegalArgumentException e){
             System.out.println("Ошибка. Введите константу из списка");
             setColor();
@@ -82,7 +91,11 @@ public class DataController {
         try {
             System.out.print("Введите координату по Х: ");
             try{
-                String temp = scanner.nextLine().replace(",",".");
+                String temp = "";
+                if (line == null) temp = scanner.nextLine().replace(",", ".");
+                else {
+                    temp = line.replace(",", ".");
+                }
                 Double x = Double.valueOf(temp);
                 if (x == null) throw new IncorrectCoordinateException();
                 this.x = x;
@@ -98,7 +111,9 @@ public class DataController {
     public void setCoordinateY(){
             System.out.print("Введите координату по Y(>-666): ");
             try {
-                String temp = scanner.nextLine().replace(",",".");
+                String temp = "";
+                if (line == null) temp = scanner.nextLine().replace(",",".");
+                else temp = line.replace(",",".");
                 Matcher matcher = pattern.matcher(temp);
                 if (Double.parseDouble(temp) <= -666) throw new IncorrectCoordinateException();
                 if (matcher.matches()) throw new NotIntegerException();
@@ -121,7 +136,8 @@ public class DataController {
             System.out.print("Введите возраст(>0): ");
             try {
                 String temp = "";
-                temp = scanner.nextLine();
+                if (line == null) temp = scanner.nextLine();
+                else temp = line;
                 Matcher matcher = pattern.matcher(temp);
                 temp = temp.replace(",",".");
                 if (Double.parseDouble(temp) <= 0) throw new IncorrectAgeException();
@@ -142,7 +158,8 @@ public class DataController {
         try {
             System.out.print("Введите кол-во крыльев: ");
             try {
-                wingspan = Float.valueOf(scanner.nextLine());
+                if (line == null) wingspan = Float.valueOf(scanner.nextLine());
+                else wingspan = Float.valueOf(line);
             }catch (NumberFormatException e){
                 System.out.println("Ошибка. Введите число");
                 setWingspan();
@@ -157,7 +174,8 @@ public class DataController {
             System.out.print("Введите вес: ");
             try {
                 String temp = "";
-                temp = scanner.nextLine().replace(",",".");
+                if (line == null) temp = scanner.nextLine().replace(",",".");
+                else temp = line.replace(",",".");
                 if (Double.parseDouble(temp) <= 0) throw new IncorrectWeightException();
                 Matcher matcher = pattern.matcher(temp);
                 if (matcher.matches()) throw new NotIntegerException();
@@ -176,7 +194,9 @@ public class DataController {
     public void setHead(){
         System.out.print("Введите размер головы: ");
         try {
-            String temp = scanner.nextLine().replace(",",".");
+            String temp = "";
+            if (line == null) temp = scanner.nextLine().replace(",",".");
+            else temp = line.replace(",",".");
             Matcher matcher = pattern.matcher(temp);
             if (matcher.matches()) throw new NotIntegerException();
             head = new DragonHead(Long.parseLong(temp));

@@ -1,10 +1,7 @@
 package com.company.utilities;
 
-import com.company.sourse.Color;
-import com.company.sourse.Coordinates;
 import com.company.sourse.Dragon;
-import com.company.sourse.DragonHead;
-import sun.reflect.generics.tree.Tree;
+
 
 import java.util.*;
 
@@ -21,7 +18,7 @@ public class CollectionController {
     }
     public CollectionController(String s){
         DataController data = new DataController("without id");
-        Dragon dragon = new Dragon(Long.parseLong(s), data.getName(), data.getCoordinates(), collection.get(Long.parseLong(s)).getCreationDate(), data.getAge(), data.getWingspan(),
+        Dragon dragon = new Dragon(Long.parseLong(s), data.getName(), data.getCoordinates(), data.getCreationDate(), data.getAge(), data.getWingspan(),
                 data.getWeight(), data.getColor(), data.getHead());
         collection.put(Long.parseLong(s),dragon);
         sortedCollection = new TreeMap<>(collection);

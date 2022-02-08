@@ -18,6 +18,10 @@ public class FileController {
     public static LinkedHashMap<Long, Dragon> collection= new LinkedHashMap<>();
     private boolean flag = false;
     public static java.util.Date lastInit;
+    private FileInputStream fis = null;
+    private InputStreamReader isr = null;
+    private PrintWriter writer = null;
+    private FileWriter fileWriter = null;
     private String regex = "(Mon||Tue||Wed||Thu||Fri||Sat||Sun) (Jan||Feb||Mar||Apr||May||Jun||Jul||Aug||Sep||Oct||Nov||Dec) ([0-2][0-9]||[3][0-1]) ([0-1][0-9]||[2][0-4]):([0-5][0-9]):([0-5][0-9]) \\w{3} \\d{4}";
     Pattern pattern = Pattern.compile(regex);
     public FileController(){
@@ -30,8 +34,8 @@ public class FileController {
     public LinkedHashMap<Long,Dragon> readCollection(){
         if (env != null){
             try {
-                FileInputStream fis = new FileInputStream(env);
-                InputStreamReader isr = new InputStreamReader(fis);
+                fis = new FileInputStream(env);
+                isr = new InputStreamReader(fis);
                 Scanner scanner = new Scanner(isr);
                 Type type = new TypeToken<LinkedHashMap<Long,Dragon>>(){}.getType();
                 try {
@@ -103,6 +107,13 @@ public class FileController {
                     CommandController.helpCommand();
                 }
                 else System.out.println("Введите \"Да\" или \"Нет\"");
+            }finally {
+                try {
+                    fis.close();
+                } catch (IOException | NullPointerException e) {}
+                try {
+                    isr.close();
+                } catch (IOException | NullPointerException e) {}
             }
         }
         else System.err.println("Ошибка. Не найдена переменная окружения");
@@ -110,12 +121,24 @@ public class FileController {
     }
     public void writeCollection() {
         if (env != null) {
-            try (PrintWriter writer = new PrintWriter(new FileWriter(env))) {
+            try {
+                fileWriter = new FileWriter(env);
+                writer = new PrintWriter(fileWriter);
                 String list = new Gson().toJson(CollectionController.getCollection());
                 writer.write(list);
                 System.out.println("Коллекция успешно записана в файл!");
             }catch (IOException e) {
                 e.toString();
+            }finally {
+                try{
+                    fileWriter.close();
+                }catch (IOException | NullPointerException e){
+                }
+                try{
+                    writer.close();
+                }catch (NullPointerException e){
+                    System.err.println("Ошибка. Файл не найден => сохранять коллекцию некуда");
+                }
             }
         }else System.err.println("Ошибка. Не найдена переменная окружения");
     }

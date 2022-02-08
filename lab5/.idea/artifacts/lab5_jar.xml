@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/lab5_jar</output-path>
     <root id="archive" name="lab5.jar">
       <element id="module-output" name="lab5" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/gson-2.8.2.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
