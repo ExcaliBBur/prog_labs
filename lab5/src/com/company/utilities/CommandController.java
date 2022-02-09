@@ -1,7 +1,7 @@
 package com.company.utilities;
 
-import com.company.exceptions.IncorrectCommandException;
 import com.company.sourse.Dragon;
+
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -90,6 +90,7 @@ public class CommandController {
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.err.println("Ошибка. Вы не ввели название файла");
                     }
+                    readScriptFile();
                     new CommandController("execute_script");
                     break;
                 case ("history"):
@@ -165,115 +166,141 @@ public class CommandController {
             System.err.println("Ошибка. Вы не ввели команду");
         }
     }
-    public CommandController(String script){
-        try {
-            DataController.fis = new FileInputStream(DataController.fileName);
-            DataController.isr = new InputStreamReader(DataController.fis);
-            Scanner scanner = new Scanner(DataController.isr);
-            DataController.line = scanner.nextLine();
-            while (DataController.line != null){
-                String[] command = DataController.line.toLowerCase(Locale.ROOT).split(" ");
-                DataController.line = scanner.nextLine();
-                System.out.println("Исполняю команду: "+command[0]+"...");
+    public CommandController(String script) {
+        try{
+            while (DataController.line.size() != 0) {
+                String[] command = DataController.line.getFirst().toLowerCase(Locale.ROOT).split(" ");
+                if (command.length == 1) System.out.println("Исполняю команду: " + command[0] + "...");
+                else System.out.println("Исполняю команду: " + command[0] + " с аргументом " + command[1] + "...");
                 TimeUnit.MILLISECONDS.sleep(1000);
-                for (int i = 13; i > 0; i --) DataController.temp[i] = DataController.temp[i-1];
+                for (int i = 13; i > 0; i--) DataController.temp[i] = DataController.temp[i - 1];
                 DataController.temp[0] = command[0];
-                switch (command[0]){
+                switch (command[0]) {
                     case ("show"):
                         showCommand();
+                        DataController.line.removeFirst();
                         break;
-                    case("exit"):
+                    case ("exit"):
+                        DataController.line.removeFirst();
                         System.out.println("Сохранить коллекцию перед выходом? (Да/Нет)");
-                        String exit = scanner.nextLine().toLowerCase(Locale.ROOT);
-                        if (exit.equals("да")) saveCommand();
+                        String[] exit = DataController.line.getFirst().toLowerCase(Locale.ROOT).split(" ");
+                        System.out.println(exit[0]);
+                        if (exit[0].equals("да")) saveCommand();
                         System.out.println("Завершение работы программы...");
+                        DataController.line.removeFirst();
                         exitCommand();
                         break;
-                    case("help"):
+                    case ("help"):
                         helpCommand();
+                        DataController.line.removeFirst();
                         break;
-                    case("info"):
+                    case ("info"):
+                        DataController.line.removeFirst();
                         infoCommand();
                         break;
-                    case("insert"):
-                        try{
-                            if (FileController.getCollection().get(Long.parseLong(command[1])) != null){
+                    case ("insert"):
+                        try {
+                            DataController.line.removeFirst();
+                            if (FileController.getCollection().get(Long.parseLong(command[1])) != null) {
                                 System.out.println("Элемент с таким айди уже есть. Хотите заменить его?(Да/Нет)");
-                                DataController.line = scanner.nextLine().toLowerCase(Locale.ROOT);
-                                if (DataController.line.equals("да")){
+                                String[] insert = DataController.line.getFirst().toLowerCase(Locale.ROOT).split(" ");
+                                System.out.println(insert[0]);
+                                DataController.line.removeFirst();
+                                if (insert[0].equals("да")) {
                                     new CollectionController(command[1]);
-                                    System.out.println("Успешно удалено!");
-                                }else if (DataController.line.equals("нет")) break;
-                                else System.out.println("Такой ответ не предусмотрен большим братом");
-                            }else new CollectionController(command[1]);
-                        }
-                        catch (ArrayIndexOutOfBoundsException e){
+                                    System.out.println("Успешно заменено!");
+                                } else if (insert[0].equals("нет")) {
+                                    break;
+                                } else {
+                                    System.out.println("Такой ответ не предусмотрен большим братом");
+                                }
+                            } else new CollectionController(command[1]);
+                        } catch (ArrayIndexOutOfBoundsException e) {
                             System.err.println("Ошибка. Вы не ввели аргумент команды.");
-                        }catch (NumberFormatException e){
+                            DataController.line.removeFirst();
+                        } catch (NumberFormatException e) {
                             System.err.println("Ошибка. Ввёден неправильный аргумент команды");
+                            DataController.line.removeFirst();
                         }
                         break;
-                    case("update"):
+                    case ("update"):
                         try {
+                            DataController.line.removeFirst();
                             if (FileController.getCollection().get(Long.parseLong(command[1])) != null) {
                                 new CollectionController(command[1]);
                             } else System.out.println("Такого айди нет в коллекции.");
-                        }catch (ArrayIndexOutOfBoundsException e){
+                        } catch (ArrayIndexOutOfBoundsException e) {
                             System.err.println("Ошибка. Вы не ввели аргумент команды.");
-                        }catch (NumberFormatException e){
+                            DataController.line.removeFirst();
+                        } catch (NumberFormatException e) {
                             System.err.println("Ошибка. Ввёден неправильный аргумент команды");
+                            DataController.line.removeFirst();
                         }
                         break;
-                    case("remove_key"):
+                    case ("remove_key"):
+                        DataController.line.removeFirst();
                         try {
                             if (FileController.getCollection().get(Long.parseLong(command[1])) != null) {
                                 CollectionController.collection.remove(Long.parseLong(command[1]));
                                 CollectionController.sortedCollection.remove(Long.parseLong(command[1]));
-                                System.out.println("Коллекция успешно удалена");
+                                System.out.println("Коллекция "+command[1]+" успешно удалена");
                             } else System.out.println("Удалять нечего, ведь такого айди нет в коллекции...");
-                        }catch (ArrayIndexOutOfBoundsException e){
+                        } catch (ArrayIndexOutOfBoundsException e) {
                             System.err.println("Ошибка. Вы не ввели аргумент команды.");
-                        }catch (NumberFormatException e){
+                            DataController.line.removeFirst();
+                        } catch (NumberFormatException e) {
                             System.err.println("Ошибка. Ввёден неправильный аргумент команды");
+                            DataController.line.removeFirst();
                         }
                         break;
-                    case("clear"):
+                    case ("clear"):
                         clearCommand();
+                        DataController.line.removeFirst();
                         break;
-                    case("save"):
+                    case ("save"):
                         saveCommand();
+                        DataController.line.removeFirst();
                         break;
-                    case("execute_script"):
+                    case ("execute_script"):
                         System.out.println("Нельзя вызывать скрипт в скрипте");
+                        DataController.line.removeFirst();
                         break;
-                    case("history"):
+                    case ("history"):
                         historyCommand();
+                        DataController.line.removeFirst();
                         break;
-                    case("replace_if_greater"):
+                    case ("replace_if_greater"):
                         try {
+                            DataController.line.removeFirst();
                             id = Long.parseLong(command[1]);
                             replaceGreaterCommand();
-                        }catch (ArrayIndexOutOfBoundsException e){
+                        } catch (ArrayIndexOutOfBoundsException e) {
                             System.err.println("Ошибка. Вы не ввели аргумент команды.");
-                        }catch (NumberFormatException e){
+                            DataController.line.removeFirst();
+                        } catch (NumberFormatException e) {
                             System.err.println("Ошибка. Ввёден неправильный аргумент команды");
+                            DataController.line.removeFirst();
                         }
                         break;
-                    case("replace_if_lower"):
+                    case ("replace_if_lower"):
                         try {
+                            DataController.line.removeFirst();
                             id = Long.parseLong(command[1]);
                             replaceLowerCommand();
-                        }catch (ArrayIndexOutOfBoundsException e){
+                        } catch (ArrayIndexOutOfBoundsException e) {
                             System.err.println("Ошибка. Вы не ввели аргумент команды.");
-                        }catch (NumberFormatException e){
+                            DataController.line.removeFirst();
+                        } catch (NumberFormatException e) {
                             System.err.println("Ошибка. Ввёден неправильный аргумент команды");
+                            DataController.line.removeFirst();
                         }
                         break;
-                    case("average_of_wingspan"):
+                    case ("average_of_wingspan"):
                         avgWingspanCommand();
+                        DataController.line.removeFirst();
                         break;
-                    case("count_less_than_color"):
-                        try{
+                    case ("count_less_than_color"):
+                        try {
                             switch (command[1].toUpperCase(Locale.ROOT)) {
                                 case ("RED"):
                                     color = 1;
@@ -288,49 +315,47 @@ public class CommandController {
                                     color = 4;
                                     break;
                                 default:
-                                    System.out.println("Ошибка в аргументе. Такого цвета нет в списке");}
-                        }catch (ArrayIndexOutOfBoundsException e){
+                                    System.out.println("Ошибка в аргументе. Такого цвета нет в списке");
+                            }
+                        } catch (ArrayIndexOutOfBoundsException e) {
                             System.err.println("Ошибка. Вы не ввели аргумент команды");
-                        }catch (NumberFormatException e){
+                            DataController.line.removeFirst();
+                        } catch (NumberFormatException e) {
                             System.err.println("Ошибка. Ввёден неправильный аргумент команды");
+                            DataController.line.removeFirst();
                         }
                         colorCommand();
+                        DataController.line.removeFirst();
                         break;
-                    case("filter_less_than_weight"):
+                    case ("filter_less_than_weight"):
                         try {
                             weight = Long.parseLong(command[1]);
+                            DataController.line.removeFirst();
                             filterWeight();
-                        }catch (ArrayIndexOutOfBoundsException e){
+                        } catch (ArrayIndexOutOfBoundsException e) {
                             System.err.println("Ошибка. Вы не ввели аргумент команды");
-                        }catch (NumberFormatException e){
+                            DataController.line.removeFirst();
+                        } catch (NumberFormatException e) {
                             System.err.println("Ошибка. Ввёден неправильный аргумент команды");
+                            DataController.line.removeFirst();
                         }
                         break;
-                    case("add"):
+                    case ("add"):
+                        DataController.line.removeFirst();
                         new CollectionController();
                         break;
                     default:
+                        DataController.line.removeFirst();
                         System.err.println("Такой команды не найдено!Введите \"help\" для получения списка команд");
                         DataController.temp[0] = null;
-                        for (int i = 0; i <= 12; i ++) DataController.temp[i] = DataController.temp[i+1];
+                        for (int i = 0; i <= 12; i++) DataController.temp[i] = DataController.temp[i + 1];
                 }
                 TimeUnit.MILLISECONDS.sleep(1000);
             }
-        }catch (FileNotFoundException e){
-            System.err.println("Ошибка. Файл не найден");
-        }catch (NoSuchElementException e){
-            System.out.println("Исполнять больше нечего");
-        }catch (NullPointerException e){
-        }catch (InterruptedException e) {
-        }finally {
-            try{
-                DataController.fis.close();
-            }catch (IOException | NullPointerException e){}
-            try{
-                DataController.isr.close();
-            }catch (IOException | NullPointerException e){}
-        }
+            System.out.println("Исполнять больше нечего!");
+        }catch (InterruptedException e){}
     }
+
     public void showCommand(){
         CollectionController.getCollectionForUser();
     }
@@ -360,7 +385,7 @@ public class CommandController {
         System.out.printf("%-50s%-1s%n","update {id}: ","обновить значение элемента коллекции, id которого равен заданному");
         System.out.printf("%-50s%-1s%n","remove_key {id}: ","удалить элемент из коллекции по его ключу");
         System.out.printf("%-50s%-1s%n","add: ","добавить новый элемент ");
-        System.out.printf("%-50s%-1s%n","clear: ","очистить коллекцию");
+        System.out.printf("%-50s%-1s%n","clear: ","очистить коллекцию(сразу из файла)");
         System.out.printf("%-50s%-1s%n","save: ", "сохранить коллекцию в файл");
         System.out.printf("%-50s%-1s%n","execute_script {file_name}(абсолютный):","считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.");
         System.out.printf("%-50s%-1s%n","exit: ","завершить программу (без сохранения в файл)");
@@ -433,28 +458,24 @@ public class CommandController {
             if (collection.get(id).getColor().value > data.getColor().value) collection.get(id).setColor(data.getColor());
         }else System.out.println("Элемента с таким айди нет!");
     }
-//    public void executeScriptCommand(){
-//        try {
-//            fis = new FileInputStream(fileName);
-//            isr = new InputStreamReader(fis);
-//            Scanner scanner = new Scanner(isr);
-//            String line = scanner.nextLine();
-//            while (line != null){
-//                System.out.println(line);
-//                line = scanner.nextLine();
-//            }
-//        }catch (FileNotFoundException e){
-//            System.err.println("Ошибка. Файл не найден");
-//        }catch (NoSuchElementException e){
-//            System.out.println("Исполнять больше нечего");
-//        }finally {
-//            try{
-//                fis.close();
-//            }catch (IOException | NullPointerException e){}
-//            try{
-//                isr.close();
-//            }catch (IOException | NullPointerException e){}
-//        }
-//    }
+    public void readScriptFile(){
+        try {
+            DataController.fis = new FileInputStream(DataController.fileName);
+            DataController.isr = new InputStreamReader(DataController.fis);
+            Scanner scanner = new Scanner(DataController.isr);
+            while (true) DataController.line.add(scanner.nextLine());
+        }catch (FileNotFoundException e){
+        System.err.println("Ошибка. Файл не найден");
+        }catch (NoSuchElementException e){
+        }catch (NullPointerException e){
+        }finally {
+            try{
+                DataController.fis.close();
+            }catch (IOException | NullPointerException e){}
+            try{
+                DataController.isr.close();
+            }catch (IOException | NullPointerException e){}
+    }
+}
 }
 
