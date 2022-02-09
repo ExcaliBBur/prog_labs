@@ -3,9 +3,10 @@ package com.company;
 import com.company.utilities.CommandController;
 import com.company.utilities.FileController;
 
-import java.util.TreeMap;
 
-
+/**
+ * Class to start the application
+ */
 public class Main {
     public static void main(String[] args) {
         FileController file = new FileController();

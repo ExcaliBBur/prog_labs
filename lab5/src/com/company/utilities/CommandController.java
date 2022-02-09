@@ -10,11 +10,21 @@ import java.io.InputStreamReader;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Command controller class
+ */
 public class CommandController {
+    /**
+     * scanner for user_mode console
+     */
     Scanner scanner = new Scanner(System.in);
     private long weight;
     private int color;
     private long id;
+
+    /**
+     * Console user_mode
+     */
     public CommandController(){
         try {
             String[] command = scanner.nextLine().toLowerCase(Locale.ROOT).split(" ");
@@ -69,8 +79,8 @@ public class CommandController {
                     try {
                         if (FileController.getCollection().get(Long.parseLong(command[1])) != null) {
                             CollectionController.collection.remove(Long.parseLong(command[1]));
-                            CollectionController.sortedCollection.remove(Long.parseLong(command[1]));
                             System.out.println("Коллекция успешно удалена");
+                            //Поздравляю, вы нашли пасхалку!!!
                         } else System.out.println("Удалять нечего, ведь такого айди нет в коллекции...");
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.err.println("Ошибка. Вы не ввели аргумент команды.");
@@ -166,6 +176,11 @@ public class CommandController {
             System.err.println("Ошибка. Вы не ввели команду");
         }
     }
+
+    /**
+     * Console script_mode
+     * @param script flag that`s script_mode
+     */
     public CommandController(String script) {
         try{
             while (DataController.line.size() != 0) {
@@ -242,7 +257,6 @@ public class CommandController {
                         try {
                             if (FileController.getCollection().get(Long.parseLong(command[1])) != null) {
                                 CollectionController.collection.remove(Long.parseLong(command[1]));
-                                CollectionController.sortedCollection.remove(Long.parseLong(command[1]));
                                 System.out.println("Коллекция "+command[1]+" успешно удалена");
                             } else System.out.println("Удалять нечего, ведь такого айди нет в коллекции...");
                         } catch (ArrayIndexOutOfBoundsException e) {
@@ -356,28 +370,50 @@ public class CommandController {
         }catch (InterruptedException e){}
     }
 
+    /**
+     * Method to show collection
+     */
     public void showCommand(){
         CollectionController.getCollectionForUser();
     }
+
+    /**
+     * Method to exit programm
+     */
     public void exitCommand(){
         System.exit(0);
     }
+
+    /**
+     * Method to clear collection from file
+     */
     public void clearCommand(){
         CollectionController.collection.clear();
-        CollectionController.sortedCollection.clear();
         FileController file = new FileController();
         file.writeSpace();
         System.out.println("Коллекция успешно очищена");
     }
+
+    /**
+     * Method to get collection info
+     */
     public void infoCommand(){
         System.out.println("Инициализация: " + FileController.lastInit);
         System.out.println("Тип коллекции: " + FileController.collection.getClass().getName());
         System.out.println("Количество элементов в коллекции: "+FileController.collection.size());
     }
+
+    /**
+     * Method to save collection to file
+     */
     public void saveCommand(){
         FileController file = new FileController();
         file.writeCollection();
     }
+
+    /**
+     * Method to get description for all commands
+     */
     public static void helpCommand(){
         System.out.printf("%-50s%-1s%n","info: ","вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.) ");
         System.out.printf("%-50s%-1s%n", "show: ","вывести в стандартный поток вывода все элементы коллекции в строковом представлении");
@@ -396,6 +432,10 @@ public class CommandController {
         System.out.printf("%-50s%-1s%n","count_less_than_color {color}: ","вывести количество элементов, значение поля color которых равно заданному");
         System.out.printf("%-50s%-1s%n","filter_less_than_weight {weight}: ","вывести элементы, значение поля weight которых меньше заданного");
     }
+
+    /**
+     * Method to calculate average wingspan
+     */
     public void avgWingspanCommand(){
         Map<Long, Dragon> collection = CollectionController.getCollection();
         Set<Long> keys = collection.keySet();
@@ -405,6 +445,10 @@ public class CommandController {
         }
         System.out.println(wingspan/ keys.size());
     }
+
+    /**
+     * Method to filter elements by weight
+     */
     public void filterWeight(){
         Map<Long, Dragon> collection = CollectionController.getCollection();
         Set<Long> keys = collection.keySet();
@@ -412,6 +456,10 @@ public class CommandController {
             if (collection.get(temp).getWeight() < weight) System.out.println(collection.get(temp));
         }
     }
+
+    /**
+     * Method to filter elements by color value
+     */
     public void colorCommand(){
         Map<Long, Dragon> collection = CollectionController.getCollection();
         Set<Long> keys = collection.keySet();
@@ -419,6 +467,10 @@ public class CommandController {
             if (collection.get(temp).getColor().value < color ) System.out.println(collection.get(temp));;
         }
     }
+
+    /**
+     * Method to get commands history
+     */
     public void historyCommand(){
         for (int i = 0; i < 14; i++){
             if (DataController.temp[i] != null) {
@@ -428,6 +480,10 @@ public class CommandController {
         }
         System.out.println();
     }
+
+    /**
+     * Method for replacing values if they less than the given one id
+     */
     public void replaceGreaterCommand(){
         Map<Long, Dragon> collection = CollectionController.getCollection();
         Set<Long> keys = collection.keySet();
@@ -443,6 +499,10 @@ public class CommandController {
             if (collection.get(id).getColor().value < data.getColor().value) collection.get(id).setColor(data.getColor());
         }else System.out.println("Элемента с таким айди нет!");
     }
+
+    /**
+     * Method for replacing values if they greater than the given one id
+     */
     public void replaceLowerCommand(){
         Map<Long, Dragon> collection = CollectionController.getCollection();
         Set<Long> keys = collection.keySet();
@@ -458,6 +518,10 @@ public class CommandController {
             if (collection.get(id).getColor().value > data.getColor().value) collection.get(id).setColor(data.getColor());
         }else System.out.println("Элемента с таким айди нет!");
     }
+
+    /**
+     * Method for read script file
+     */
     public void readScriptFile(){
         try {
             DataController.fis = new FileInputStream(DataController.fileName);

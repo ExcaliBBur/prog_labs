@@ -1,6 +1,5 @@
 package com.company.sourse;
 
-import com.company.utilities.DataController;
 
 public enum Color {
     RED(1),
@@ -9,6 +8,11 @@ public enum Color {
     BROWN(4);
 
     public final int value;
+
+    /**
+     * Get color value
+     * @param value value
+     */
     private Color(int value){
         this.value = value;
     }

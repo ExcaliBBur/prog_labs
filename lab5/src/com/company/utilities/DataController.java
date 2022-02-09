@@ -13,7 +13,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ * Data controller class
+ */
 public class DataController {
     Scanner scanner = new Scanner(System.in);
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
@@ -34,6 +36,10 @@ public class DataController {
     public static FileInputStream fis = null;
     public static  InputStreamReader isr = null;
     public static LinkedList<String> line = new LinkedList<>();
+
+    /**
+     * Set new dragon with generated id
+     */
     public DataController(){
         System.out.println("id было сгенерировано автоматически. ");
         generateId();
@@ -50,6 +56,11 @@ public class DataController {
         setHead();
         System.out.println("Действие завершено.");
     }
+
+    /**
+     * Set new dragon without generated id
+     * @param s dragon`s id
+     */
     public DataController(String s){
         setName();
         setCoordinateX();
@@ -63,11 +74,19 @@ public class DataController {
         setHead();
         System.out.println("Действие завершено.");
     }
+
+    /**
+     * Method to generate id
+     */
     public void generateId(){
         id = (long) (Math.random() * 1000);
         Set<Long> keys = CollectionController.getCollection().keySet();
         if (keys.contains(id)) generateId();
     }
+
+    /**
+     * Method to set name
+     */
     public void setName(){
         try {
             if (DataController.line.size() != 0) TimeUnit.MILLISECONDS.sleep(1000);
@@ -89,6 +108,10 @@ public class DataController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Method to set color
+     */
     public void setColor(){
         if (DataController.line.size() != 0) {
             try {
@@ -116,6 +139,10 @@ public class DataController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Method to set X coordinate
+     */
     public void setCoordinateX(){
         try {
             if (DataController.line.size() != 0) {
@@ -153,6 +180,10 @@ public class DataController {
             setCoordinateX();
         }
     }
+
+    /**
+     * Method to set Y coordinate
+     */
     public void setCoordinateY(){
         if (DataController.line.size() != 0) {
             try {
@@ -194,9 +225,17 @@ public class DataController {
                 e.printStackTrace();
             }
     }
+
+    /**
+     * Method to generate creation date
+     */
     public void generateCreationDate(){
         this.creationDate = new Date();
     }
+
+    /**
+     * Method to set age
+     */
     public void setAge(){
         if (DataController.line.size() != 0) {
             try {
@@ -239,6 +278,10 @@ public class DataController {
                 e.printStackTrace();
             }
     }
+
+    /**
+     * Method to set wingspan
+     */
     public void setWingspan(){
         try {
             if (DataController.line.size() != 0) TimeUnit.MILLISECONDS.sleep(1000);
@@ -270,6 +313,10 @@ public class DataController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Method to set weight
+     */
     public void setWeight(){
         if (DataController.line.size() != 0) {
             try {
@@ -312,6 +359,10 @@ public class DataController {
                 e.printStackTrace();
             }
     }
+
+    /**
+     * Method to set head
+     */
     public void setHead(){
         if (DataController.line.size() != 0) {
             try {
@@ -347,39 +398,99 @@ public class DataController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Method to get id
+     * @return id
+     */
     public long getId(){
         return id;
     }
+
+    /**
+     * Method to get name
+     * @return name
+     */
     public String getName(){
         return name;
     }
+
+    /**
+     * Method to get creation date
+     * @return creation date
+     */
     public Date getCreationDate(){
         return creationDate;
     }
+
+    /**
+     * Method to get coordinates
+     * @return coordinates
+     */
     public Coordinates getCoordinates(){
         return coordinates;
     }
+
+    /**
+     * Method to get age
+     * @return age
+     */
     public int getAge(){
         return age;
     }
+
+    /**
+     * Method to get color
+     * @return color
+     */
     public Color getColor(){
         return color;
     }
+
+    /**
+     * Method to get wingspan
+     * @return wingspan
+     */
     public Float getWingspan(){
         return wingspan;
     }
+
+    /**
+     * Method to get weight
+     * @return weigth
+     */
     public long getWeight(){
         return weight;
     }
+
+    /**
+     * Method to get head
+     * @return head
+     */
     public DragonHead getHead(){
         return head;
     }
+
+    /**
+     * Method to get head size
+     * @return head size
+     */
     public long getHeadSize(){
         return head.getSize();
     }
+
+    /**
+     * Method to get X coordinate
+     * @return X coordinate
+     */
     public Double getCoordinateX(){
         return coordinates.getX();
     }
+
+    /**
+     * Method to get Y coordinate
+     * @return Y coordinate
+     */
     public long getCoordinateY(){
         return coordinates.getY();
     }

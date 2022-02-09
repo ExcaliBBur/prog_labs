@@ -9,9 +9,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+/**
+ * File controller class
+ */
 public class FileController {
     final private String file = "lab5";
     final private String env = System.getenv().get(file);
@@ -22,15 +23,21 @@ public class FileController {
     private InputStreamReader isr = null;
     private PrintWriter writer = null;
     private FileWriter fileWriter = null;
-    private String regex = "(Mon||Tue||Wed||Thu||Fri||Sat||Sun) (Jan||Feb||Mar||Apr||May||Jun||Jul||Aug||Sep||Oct||Nov||Dec) ([0-2][0-9]||[3][0-1]) ([0-1][0-9]||[2][0-4]):([0-5][0-9]):([0-5][0-9]) \\w{3} \\d{4}";
-    Pattern pattern = Pattern.compile(regex);
     public FileController(){
         lastInit();
     }
 
+    /**
+     * Method to set last initialization time
+     */
     public void lastInit(){
         lastInit = new Date();
     }
+
+    /**
+     * Method to read collection from file
+     * @return collection
+     */
     public LinkedHashMap<Long,Dragon> readCollection(){
         if (env != null){
             try {
@@ -86,11 +93,6 @@ public class FileController {
                             System.err.println("Ошибка. Кто-то удалил(либо изменил) вес дракона в исходном файле (weight)");
                             flag = true;
                         }
-                        Matcher matcher = pattern.matcher(collection.get(key).getCreationDate().toString());
-                        if (!matcher.matches()){
-                            System.err.println("Ошибка. Кто-то поменял дату создания элемента в исходном файле (creationDate)");
-                            flag = true;
-                        }
                     }
                 if (!collection.isEmpty() && !flag )System.out.println("Коллекция успешно загружена из файла!");
                 else System.out.println("Коллекция загружена с ошибками. Поправьте их, пожалуйста...");
@@ -119,6 +121,10 @@ public class FileController {
         else System.err.println("Ошибка. Не найдена переменная окружения");
         return new LinkedHashMap<>();
     }
+
+    /**
+     * Method to write collection to file
+     */
     public void writeCollection() {
         if (env != null) {
             try {
@@ -142,6 +148,10 @@ public class FileController {
             }
         }else System.err.println("Ошибка. Не найдена переменная окружения");
     }
+
+    /**
+     * Method to write space to file
+     */
     public void writeSpace(){
         if (env != null) {
             try (PrintWriter writer = new PrintWriter(new FileWriter(env))) {
@@ -152,6 +162,11 @@ public class FileController {
             }
         }else System.err.println("Ошибка. Не найдена переменная окружения");
     }
+
+    /**
+     * Method to get collection
+     * @return collection
+     */
     public static LinkedHashMap<Long, Dragon> getCollection(){
         return collection;
     }
