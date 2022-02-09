@@ -93,6 +93,10 @@ public class FileController {
                             System.err.println("Ошибка. Кто-то удалил(либо изменил) вес дракона в исходном файле (weight)");
                             flag = true;
                         }
+                        if (collection.get(key).getCreationDate() == null){
+                            System.err.println("Ошибка. Кто-то удалил дату создания дракона (creation date)");
+                            flag = true;
+                        }
                     }
                 if (!collection.isEmpty() && !flag )System.out.println("Коллекция успешно загружена из файла!");
                 else System.out.println("Коллекция загружена с ошибками. Поправьте их, пожалуйста...");
