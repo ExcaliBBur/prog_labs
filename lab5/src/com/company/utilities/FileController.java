@@ -3,6 +3,7 @@ package com.company.utilities;
 
 import com.company.sourse.Dragon;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
@@ -43,17 +44,21 @@ public class FileController {
             try {
                 fis = new FileInputStream(env);
                 isr = new InputStreamReader(fis);
-                Scanner scanner = new Scanner(isr);
+                BufferedReader reader = new BufferedReader(isr);
                 Type type = new TypeToken<LinkedHashMap<Long,Dragon>>(){}.getType();
                 try {
-                    collection = new Gson().fromJson(scanner.nextLine(), type);
-                } catch (NumberFormatException e){
+                    String line;
+                    StringBuilder coll = new StringBuilder();
+                    while ((line = reader.readLine()) != null) coll.append(line);
+                    collection = new Gson().fromJson(String.valueOf(coll), type);
+                }catch (NumberFormatException e){
                     System.err.println("Ошибка. Какой-то нехороший человек изменил исходный файл (вместо числа затаилась строка).");
                     System.out.println("Вывожу список доступных команд:");
                     CommandController.helpCommand();
                 }catch (JsonSyntaxException e){
                     System.err.println("Ошибка. Вы сделали что-то непоправимое в исходном файле");
-                }
+                }catch (IOException e) {}
+                try {
                     Set<Long> keys = collection.keySet();
                     for (Long key : keys) {
                         if (collection.get(key).getColor() == null){
@@ -98,21 +103,22 @@ public class FileController {
                             flag = true;
                         }
                     }
+                }catch (NullPointerException e){
+                    System.err.println("Ошибка. Файл пустой. Хотите записать в него данные?(Да/Нет)");
+                    Scanner scanner = new Scanner(System.in);
+                    String temp = scanner.nextLine().toLowerCase(Locale.ROOT);
+                    if (temp.equals("да")) new CollectionController();
+                    else if (temp.equals("нет")){
+                        System.out.println("Вывожу список доступных команд: ");
+                        CommandController.helpCommand();
+                    }
+                    else System.out.println("Введите \"Да\" или \"Нет\"");
+                }
                 if (!collection.isEmpty() && !flag )System.out.println("Коллекция успешно загружена из файла!");
                 else System.out.println("Коллекция загружена с ошибками. Поправьте их, пожалуйста...");
                 return collection;
             }catch (FileNotFoundException e){
                 System.err.println("Ошибка. Файл не найден");
-            }catch (NoSuchElementException e){
-                System.err.println("Ошибка. Файл пустой. Хотите записать в него данные?(Да/Нет)");
-                Scanner scanner = new Scanner(System.in);
-                String temp = scanner.nextLine().toLowerCase(Locale.ROOT);
-                if (temp.equals("да")) new CollectionController();
-                else if (temp.equals("нет")){
-                    System.out.println("Вывожу список доступных команд: ");
-                    CommandController.helpCommand();
-                }
-                else System.out.println("Введите \"Да\" или \"Нет\"");
             }finally {
                 try {
                     fis.close();
@@ -134,7 +140,7 @@ public class FileController {
             try {
                 fileWriter = new FileWriter(env);
                 writer = new PrintWriter(fileWriter);
-                String list = new Gson().toJson(CollectionController.getCollection());
+                String list = new GsonBuilder().setPrettyPrinting().create().toJson(CollectionController.getCollection());
                 writer.write(list);
                 System.out.println("Коллекция успешно записана в файл!");
             }catch (IOException e) {
