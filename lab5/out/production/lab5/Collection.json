@@ -1,4 +1,20 @@
 {
+  "228": {
+    "id": 228,
+    "name": "Insert",
+    "coordinates": {
+      "x": 228.0,
+      "y": 1337
+    },
+    "creationDate": "Feb 10, 2022 12:15:05 AM",
+    "age": 1234,
+    "wingspan": 134.0,
+    "weight": 1234,
+    "color": "ORANGE",
+    "head": {
+      "size": 1234
+    }
+  },
   "500": {
     "id": 500,
     "name": "dragon",
