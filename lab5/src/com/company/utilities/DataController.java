@@ -41,8 +41,8 @@ public class DataController {
      * Set new dragon with generated id
      */
     public DataController(){
-        System.out.println("id было сгенерировано автоматически. ");
         generateId();
+        System.out.println("id " + getId() + " было сгенерировано автоматически. ");
         setName();
         setCoordinateX();
         setCoordinateY();
