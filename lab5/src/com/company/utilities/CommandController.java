@@ -1,5 +1,6 @@
 package com.company.utilities;
 
+import com.company.exceptions.IncorrectIdException;
 import com.company.sourse.Dragon;
 
 
@@ -7,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.rmi.ServerError;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -53,15 +55,21 @@ public class CommandController {
                             System.out.println("Элемент с таким айди уже есть. Хотите заменить его?(Да/Нет)");
                             String temp = scanner.nextLine().toLowerCase(Locale.ROOT);
                             if (temp.equals("да")) {
+                                if (Integer.parseInt(command[1]) <= 0) throw new IncorrectIdException();
                                 new CollectionController(command[1]);
                                 System.out.println("Успешно удалено!");
                             } else if (temp.equals("нет")) break;
                             else System.out.println("Такой ответ не предусмотрен большим братом");
-                        } else new CollectionController(command[1]);
+                        } else {
+                            if (Integer.parseInt(command[1]) <= 0) throw new IncorrectIdException();
+                            new CollectionController(command[1]);
+                        }
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.err.println("Ошибка. Вы не ввели аргумент команды.");
                     } catch (NumberFormatException e) {
                         System.err.println("Ошибка. Ввёден неправильный аргумент команды");
+                    }catch (IncorrectIdException e){
+                        System.err.println("Ошибка. Id должен быть больше нуля.");
                     }
                     break;
                 case ("update"):
@@ -222,6 +230,7 @@ public class CommandController {
                                 System.out.println(insert[0]);
                                 DataController.line.removeFirst();
                                 if (insert[0].equals("да")) {
+                                    if (Integer.parseInt(command[1]) <= 0) throw new IncorrectIdException();
                                     new CollectionController(command[1]);
                                     System.out.println("Успешно заменено!");
                                 } else if (insert[0].equals("нет")) {
@@ -229,13 +238,18 @@ public class CommandController {
                                 } else {
                                     System.out.println("Такой ответ не предусмотрен большим братом");
                                 }
-                            } else new CollectionController(command[1]);
+                            } else {
+                                if (Integer.parseInt(command[1]) <= 0) throw new IncorrectIdException();
+                                new CollectionController(command[1]);
+                            }
                         } catch (ArrayIndexOutOfBoundsException e) {
                             System.err.println("Ошибка. Вы не ввели аргумент команды.");
                             DataController.line.removeFirst();
                         } catch (NumberFormatException e) {
                             System.err.println("Ошибка. Ввёден неправильный аргумент команды");
                             DataController.line.removeFirst();
+                        } catch (IncorrectIdException e){
+                            System.err.println("Ошибка. Id должен быть больше нуля.");
                         }
                         break;
                     case ("update"):
