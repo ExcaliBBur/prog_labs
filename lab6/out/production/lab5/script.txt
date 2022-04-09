@@ -1,0 +1,3 @@
+show
+insert 990
+нет
