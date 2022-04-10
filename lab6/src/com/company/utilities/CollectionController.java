@@ -2,7 +2,6 @@ package com.company.utilities;
 
 import com.company.sourse.Dragon;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
 
@@ -13,15 +12,11 @@ public class CollectionController implements Serializable{
     public static LinkedHashMap<Long, Dragon> collection = FileController.getCollection();
 
     /**
-     * Method to sort collection
+     * Method to sort collection by name
      */
     public static void sortCollection(){
-        List<Map.Entry<Long, Dragon>> list = new ArrayList<Map.Entry<Long, Dragon>>(collection.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<Long, Dragon>>(){
-            public int compare(Map.Entry<Long,Dragon> o1, Map.Entry<Long,Dragon> o2){
-                return (int) (o1.getKey() - o2.getKey());
-            }
-        });
+        List<Map.Entry<Long, Dragon>> list = new ArrayList<>(collection.entrySet());
+        Collections.sort(list, Comparator.comparing(o -> o.getValue().getName()));
         collection.clear();
         list.forEach(s -> collection.put(s.getKey(),s.getValue()));
     }
@@ -44,14 +39,5 @@ public class CollectionController implements Serializable{
     public static Map<Long, Dragon> getCollection() {
         sortCollection();
         return collection;
-    }
-
-    /**
-     * Method to get collection for user
-     * @return collection for user
-     */
-    public static Collection<Dragon> getCollectionForUser() throws IOException {
-        sortCollection();
-        return collection.values();
     }
 }

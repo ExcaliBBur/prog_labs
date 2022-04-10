@@ -7,6 +7,8 @@ import com.company.utilities.DataController;
 import com.company.utilities.FileController;
 
 import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class CommandHandlerServer implements Serializable {
@@ -143,7 +145,7 @@ public class CommandHandlerServer implements Serializable {
     }
     public static ByteArrayOutputStream replaceLowerCommand() throws IOException, ClassNotFoundException {
         if (FileController.getCollection().get(Long.parseLong(argument)) != null) {
-            Server.sendErrorToClient(false);
+            Server.sendErrorToClient("false");
             Server.receiveCollection();
             CollectionController.collection.get(Long.parseLong(argument)).setName(CollectionController.collection.get(0L).getName());
             if (CollectionController.collection.get(Long.parseLong(argument)).getAge() > CollectionController.collection.get(0L).getAge())
@@ -164,7 +166,7 @@ public class CommandHandlerServer implements Serializable {
             objectOutputStream.writeObject("Элемент успешно заменён.");
             objectOutputStream.flush();
         }else{
-            Server.sendErrorToClient(true);
+            Server.sendErrorToClient("true");
             objectOutputStream.writeObject("Такого айди нет в коллекции.");
             objectOutputStream.flush();
         }
@@ -172,7 +174,7 @@ public class CommandHandlerServer implements Serializable {
     }
     public static ByteArrayOutputStream replaceGreaterCommand() throws IOException, ClassNotFoundException {
         if (FileController.getCollection().get(Long.parseLong(argument)) != null) {
-            Server.sendErrorToClient(false);
+            Server.sendErrorToClient("false");
             Server.receiveCollection();
             CollectionController.collection.get(Long.parseLong(argument)).setName(CollectionController.collection.get(0L).getName());
             if (CollectionController.collection.get(Long.parseLong(argument)).getAge() < CollectionController.collection.get(0L).getAge())
@@ -193,7 +195,7 @@ public class CommandHandlerServer implements Serializable {
             objectOutputStream.writeObject("Элемент успешно заменён.");
             objectOutputStream.flush();
         }else{
-            Server.sendErrorToClient(true);
+            Server.sendErrorToClient("true");
             objectOutputStream.writeObject("Такого айди нет в коллекции.");
             objectOutputStream.flush();
         }
@@ -217,7 +219,7 @@ public class CommandHandlerServer implements Serializable {
     }
     public static ByteArrayOutputStream updateCommand() throws IOException, ClassNotFoundException {
         if (FileController.getCollection().get(Long.parseLong(argument)) != null) {
-            Server.sendErrorToClient(false);
+            Server.sendErrorToClient("false");
             Server.receiveCollection();
             DataController.generateCreationDate();
             CollectionController.collection.put(Long.parseLong(argument),CollectionController.collection.get(0L));
@@ -228,7 +230,7 @@ public class CommandHandlerServer implements Serializable {
             objectOutputStream.flush();
         }
         else{
-            Server.sendErrorToClient(true);
+            Server.sendErrorToClient("true");
             objectOutputStream.writeObject("Такого айди нет в коллекции.");
             objectOutputStream.flush();
         }
@@ -236,7 +238,7 @@ public class CommandHandlerServer implements Serializable {
     }
     public static ByteArrayOutputStream insertCommand() throws IOException, ClassNotFoundException {
         if (FileController.getCollection().get(Long.parseLong(argument)) == null) {
-            Server.sendErrorToClient(false);
+            Server.sendErrorToClient("false");
             Server.receiveCollection();
             DataController.generateCreationDate();
             CollectionController.collection.put(Long.parseLong(argument),CollectionController.collection.get(0L));
@@ -247,7 +249,7 @@ public class CommandHandlerServer implements Serializable {
             objectOutputStream.flush();
         }
         else{
-            Server.sendErrorToClient(true);
+            Server.sendErrorToClient("true");
             objectOutputStream.writeObject("Этот айди уже есть в коллекции.");
             objectOutputStream.flush();
         }

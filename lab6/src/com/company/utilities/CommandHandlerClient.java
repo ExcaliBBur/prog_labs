@@ -18,16 +18,15 @@ import java.util.concurrent.TimeUnit;
  * Command controller class
  */
 public class CommandHandlerClient {
-    /**
-     * scanner for user_mode console
-     */
+
     Scanner scanner = new Scanner(System.in);
     public static LinkedHashMap<Long, Dragon> collection = new LinkedHashMap<>();
-    private String argument;
-    private String command;
+    public static String argument;
+    public static String command;
+    public static String error = "";
 
     /**
-     * Console user_mode
+     * Console
      */
     public CommandHandlerClient() throws IOException, ClassNotFoundException {
         try {
@@ -69,10 +68,8 @@ public class CommandHandlerClient {
                     try {
                         if (Integer.parseInt(argument) <= 0) throw new IncorrectIdException();
                         Client.sendCommand(new CommandSerializable(command,argument),1);
-                        if (Client.receiveError().equals(true)){}
-                        else {
-                            addCommand();
-                        }
+                        Client.receiveError();
+                        if (error.equals("false")) addCommand();
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.err.println("Ошибка. Вы не ввели аргумент команды.");
                         new CommandHandlerClient();
@@ -107,10 +104,8 @@ public class CommandHandlerClient {
                     try {
                         if (Integer.parseInt(argument) <= 0) throw new IncorrectIdException();
                         Client.sendCommand(new CommandSerializable(command,argument),1);
-                        if (Client.receiveError().equals(true)){}
-                        else {
-                            insertCommand();
-                        }
+                        Client.receiveError();
+                        if (error.equals("false")) insertCommand();
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.err.println("Ошибка. Вы не ввели аргумент команды.");
                         new CommandHandlerClient();

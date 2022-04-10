@@ -81,9 +81,7 @@ public class Server implements Serializable {
     }
     public void commandHandler(){
         try {
-            if (command[1] != null) {
-                new CommandHandlerServer(command[0], command[1]);
-            }
+            new CommandHandlerServer(command[0], command[1]);
         }catch (ArrayIndexOutOfBoundsException e){
             new CommandHandlerServer(command[0]);
         }
@@ -94,12 +92,12 @@ public class Server implements Serializable {
         byte[] buff = CommandHandlerServer.executeCommand().toByteArray();
         dc.send(ByteBuffer.wrap(buff),socketAddress);
     }
-    public static void sendErrorToClient(Boolean bool) throws IOException {
+    public static void sendErrorToClient(String string) throws IOException {
         buffer.clear();
         buffer.flip();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-        objectOutputStream.writeObject(bool);
+        objectOutputStream.writeObject(string);
         objectOutputStream.flush();
         byte[] buff = byteArrayOutputStream.toByteArray();
         dc.send(ByteBuffer.wrap(buff),socketAddress);
