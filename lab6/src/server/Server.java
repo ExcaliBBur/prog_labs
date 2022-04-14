@@ -22,10 +22,12 @@ public class Server implements Serializable {
     public static LinkedHashMap<Long, Dragon> collection = new LinkedHashMap<>();
     static Selector selector;
     static DatagramChannel dc;
+    public static Log log;
     public static String[] temp = new String[14];
-    public Server(DatagramChannel dc, Selector selector){
+    public Server(DatagramChannel dc, Selector selector) throws IOException {
         this.dc = dc;
         this.selector = selector;
+        log = new Log("log.txt");
     }
     public void run() throws IOException{
         dc = DatagramChannel.open();
@@ -42,7 +44,6 @@ public class Server implements Serializable {
             if (key.isReadable()){
                 buffer.clear();
                 socketAddress = dc.receive(buffer);
-                System.out.println(socketAddress);
                 buffer.flip();
                 int limit = buffer.limit();
                 byte [] bytes = new byte[limit];
@@ -52,11 +53,8 @@ public class Server implements Serializable {
                 command = msg.split(" ");
                 for (int i = 13; i > 0; i--) temp[i] = temp[i - 1];
                 temp[0] = command[0];
-                try {
-                    if (command[1] != null) System.out.println("Получена команда " + command[0] + " с аргументом " + command[1]);
-                }catch (ArrayIndexOutOfBoundsException e){
-                    System.out.println("Получена команда "+ msg);
-                };
+                    if (command.length == 2) log.logger.info("Получена команда " + command[0] + " с аргументом " + command[1] + " от "+socketAddress);
+                    else log.logger.info("Получена команда "+ msg + " от " + socketAddress);
             }
         }
     }
@@ -67,24 +65,20 @@ public class Server implements Serializable {
             if (key.isReadable()) {
                 buffer.clear();
                 socketAddress = dc.receive(buffer);
-                System.out.println(socketAddress);
+                log.logger.info("Получен ответ от "+socketAddress);
                 buffer.flip();
                 int limit = buffer.limit();
                 byte[] bytes = new byte[limit];
                 buffer.get(bytes, 0, limit);
                 ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(bytes));
                 collection = (LinkedHashMap<Long, Dragon>) objectInputStream.readObject();
-                System.out.println(collection);
                 CollectionController.collection.putAll(collection);
             }
         }
     }
     public void commandHandler(){
-        try {
-            new CommandHandlerServer(command[0], command[1]);
-        }catch (ArrayIndexOutOfBoundsException e){
-            new CommandHandlerServer(command[0]);
-        }
+        if (command.length == 2) new CommandHandlerServer(command[0], command[1]);
+        else if (command.length == 1) new CommandHandlerServer(command[0]);
     }
     public void sendToClient() throws IOException, ClassNotFoundException {
         buffer.clear();

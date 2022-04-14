@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import server.Server;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -52,7 +53,7 @@ public class FileController implements Serializable{
                     while ((line = reader.readLine()) != null) coll.append(line);
                     collection = new Gson().fromJson(String.valueOf(coll), type);
                 }catch (NumberFormatException e){
-                    System.err.println("Ошибка. Какой-то нехороший человек изменил исходный файл (вместо числа затаилась строка).");
+                    Server.log.logger.warning("Ошибка. Какой-то нехороший человек изменил исходный файл (вместо числа затаилась строка).");
                 }catch (JsonSyntaxException e){
                     System.err.println("Ошибка. Вы сделали что-то непоправимое в исходном файле");
                 }catch (IOException e) {}
@@ -61,54 +62,54 @@ public class FileController implements Serializable{
                     for (Long key : keys) {
                         if (collection.get(key).getColor() == null){
                             flag = true;
-                            System.err.println("Ошибка. Какой-то нехороший человек изменил в исходном файле цвет дракона на неправильный (на месте color написана переменная не из списка)");
+                            Server.log.logger.warning("Ошибка. Какой-то нехороший человек изменил в исходном файле цвет дракона на неправильный (на месте color написана переменная не из списка)");
                         }
                         try{
                             long id = collection.get(key).getId();
                             if (id != collection.get(id).getId()) break;
                         }catch (NullPointerException e){
                             flag = true;
-                            System.err.println("Ошибка. Кто-то поменял айдишник в исходном файле. Советую поменять назад (либо через команду update)");
+                            Server.log.logger.warning("Ошибка. Кто-то поменял айдишник в исходном файле. Советую поменять назад (либо через команду update)");
                         }
                         if (collection.get(key).getName() == null){
-                            System.err.println("Ошибка. Кто-то убрал имя дракона из исходного файла (name)");
+                            Server.log.logger.warning("Ошибка. Кто-то убрал имя дракона из исходного файла (name)");
                             flag = true;
                         }
                         if (collection.get(key).getWingspan() == null){
-                            System.err.println("Ошибка. Кто-то убрал поле с количеством крыльев дракона в исходном файле (wingspan)");
+                            Server.log.logger.warning("Ошибка. Кто-то убрал поле с количеством крыльев дракона в исходном файле (wingspan)");
                             flag = true;
                         }
                         try{
                             collection.get(key).getHead();
                         }catch (NullPointerException e){
-                            System.err.println("Ошибка. Кто-то убрал поле с размером головы дракона в исходном файле (head size)");
+                            Server.log.logger.warning("Ошибка. Кто-то убрал поле с размером головы дракона в исходном файле (head size)");
                             flag= true;
                         }
                         if (collection.get(key).getCoordinateX() == null) {
-                            System.err.println("Ошибка. Кто-то удалил координаты дракона в исходном файле (coordinates)");
+                            Server.log.logger.warning("Ошибка. Кто-то удалил координаты дракона в исходном файле (coordinates)");
                             flag = true;
                         }
                         if (collection.get(key).getAge() == 0){
-                            System.err.println("Ошибка. Кто-то удалил(либо изменил) возраст дракона в исходном файле (age)");
+                            Server.log.logger.warning("Ошибка. Кто-то удалил(либо изменил) возраст дракона в исходном файле (age)");
                             flag = true;
                         }
                         if (collection.get(key).getWeight() == 0){
-                            System.err.println("Ошибка. Кто-то удалил(либо изменил) вес дракона в исходном файле (weight)");
+                            Server.log.logger.warning("Ошибка. Кто-то удалил(либо изменил) вес дракона в исходном файле (weight)");
                             flag = true;
                         }
                         if (collection.get(key).getCreationDate() == null){
-                            System.err.println("Ошибка. Кто-то удалил дату создания дракона (creation date)");
+                            Server.log.logger.warning("Ошибка. Кто-то удалил дату создания дракона (creation date)");
                             flag = true;
                         }
                     }
                 }catch (NullPointerException e){
-                    System.err.println("Ошибка. Файл пустой.");
+                    Server.log.logger.warning("Ошибка. Файл пустой.");
                 }
-                if (!collection.isEmpty() && !flag )System.out.println("Коллекция успешно загружена из файла!");
-                else System.out.println("Коллекция загружена с ошибками. Поправьте их, пожалуйста...");
+                if (!collection.isEmpty() && !flag )Server.log.logger.info("Коллекция успешно загружена из файла!");
+                else Server.log.logger.warning("Коллекция загружена с ошибками. Поправьте их, пожалуйста...");
                 return collection;
             }catch (FileNotFoundException e){
-                System.err.println("Ошибка. Файл не найден");
+                Server.log.logger.warning("Ошибка. Файл не найден");
             }finally {
                 try {
                     fis.close();
@@ -118,7 +119,7 @@ public class FileController implements Serializable{
                 } catch (IOException | NullPointerException e) {}
             }
         }
-        else System.err.println("Ошибка. Не найдена переменная окружения");
+        else Server.log.logger.warning("Ошибка. Не найдена переменная окружения");
         return new LinkedHashMap<>();
     }
 
@@ -132,7 +133,7 @@ public class FileController implements Serializable{
                 writer = new PrintWriter(fileWriter);
                 String list = new GsonBuilder().setPrettyPrinting().create().toJson(CollectionController.getCollection());
                 writer.write(list);
-                System.out.println("Коллекция успешно записана в файл!");
+                Server.log.logger.info("Коллекция успешно записана в файл!");
             }catch (IOException e) {
                 e.toString();
             }finally {
@@ -143,10 +144,10 @@ public class FileController implements Serializable{
                 try{
                     writer.close();
                 }catch (NullPointerException e){
-                    System.err.println("Ошибка. Файл не найден => сохранять коллекцию некуда");
+                    Server.log.logger.warning("Ошибка. Файл не найден => сохранять коллекцию некуда");
                 }
             }
-        }else System.err.println("Ошибка. Не найдена переменная окружения");
+        }else Server.log.logger.warning("Ошибка. Не найдена переменная окружения");
     }
 
     /**
@@ -159,7 +160,7 @@ public class FileController implements Serializable{
                 writer.write(list);
             }catch (IOException e) {
             }
-        }else System.err.println("Ошибка. Не найдена переменная окружения");
+        }else Server.log.logger.warning("Ошибка. Не найдена переменная окружения");
     }
 
     /**

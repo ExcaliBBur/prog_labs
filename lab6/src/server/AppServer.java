@@ -5,6 +5,7 @@ import com.company.utilities.FileController;
 import java.io.IOException;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.Selector;
+import java.util.Scanner;
 
 public class AppServer {
 
@@ -16,6 +17,19 @@ public class AppServer {
         FileController file = new FileController();
         file.readCollection();
         while (true) {
+            new Thread(()->{
+                Scanner scanner = new Scanner(System.in);
+                String input;
+                while(true) {
+                    input = scanner.nextLine().toLowerCase();
+                    if(input.equals("exit")) {
+                        Server.log.logger.info("Завершение работы сервера...");
+                        System.exit(0);
+                    }
+                    else if (input.equals("save"))
+                        file.writeCollection();
+                }
+            }).start();
             try {
                 server.receiveCommands();
                 server.commandHandler();

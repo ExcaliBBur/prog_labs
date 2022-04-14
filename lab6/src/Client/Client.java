@@ -1,7 +1,5 @@
 package Client;
 
-import com.company.utilities.CommandHandlerClient;
-
 import java.io.*;
 import java.net.*;
 

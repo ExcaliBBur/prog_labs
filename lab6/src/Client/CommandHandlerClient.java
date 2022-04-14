@@ -1,10 +1,9 @@
-package com.company.utilities;
+package Client;
 
-import Client.Client;
-import Client.CommandSerializable;
 import com.company.exceptions.IncorrectIdException;
 import com.company.sourse.Color;
 import com.company.sourse.Dragon;
+import com.company.utilities.DataController;
 
 
 import java.io.FileInputStream;
@@ -145,7 +144,8 @@ public class CommandHandlerClient {
                     break;
                 case ("filter_less_than_weight"):
                     try {
-                         Client.sendCommand(new CommandSerializable(command,argument),1);
+                        Long.parseLong(argument);
+                        Client.sendCommand(new CommandSerializable(command,argument),1);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.err.println("Ошибка. Вы не ввели аргумент команды");
                         new CommandHandlerClient();

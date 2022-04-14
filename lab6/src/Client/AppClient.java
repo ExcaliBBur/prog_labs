@@ -1,14 +1,12 @@
 package Client;
 
-import com.company.utilities.CommandHandlerClient;
-
 import java.io.IOException;
 import java.net.SocketException;
-import java.net.SocketTimeoutException;
 
 public class AppClient {
     public static boolean flag = true;
     public static void main(String[] args) throws IOException, ClassNotFoundException {
+        System.out.println("Клиент запущен");
         while (flag) {
             try {
                 new CommandHandlerClient();
