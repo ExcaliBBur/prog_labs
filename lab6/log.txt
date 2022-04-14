@@ -1,12 +1,2 @@
-апр 14, 2022 5:16:01 PM server.FileController readCollection
+апр 14, 2022 5:34:11 PM server.FileController readCollection
 INFO: Коллекция успешно загружена из файла!
-апр 14, 2022 5:16:05 PM server.Server receiveCommands
-INFO: Получена команда help от /127.0.0.1:58978
-апр 14, 2022 5:16:10 PM server.Server receiveCommands
-INFO: Получена команда count_less_than_color с аргументом brown от /127.0.0.1:58978
-апр 14, 2022 5:16:12 PM server.Server receiveCommands
-INFO: Получена команда exit от /127.0.0.1:58978
-апр 14, 2022 5:16:12 PM server.CommandHandlerServer executeCommand
-INFO: Клиент /127.0.0.1:58978 закончил работу
-апр 14, 2022 5:16:12 PM server.FileController writeCollection
-INFO: Коллекция успешно записана в файл!

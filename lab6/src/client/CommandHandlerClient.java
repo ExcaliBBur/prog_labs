@@ -1,4 +1,4 @@
-package Client;
+package client;
 
 import com.company.exceptions.IncorrectIdException;
 import com.company.sourse.Color;
@@ -23,6 +23,7 @@ public class CommandHandlerClient {
     public static String argument;
     public static String command;
     public static String error = "";
+    private static boolean isScriptFile = true;
 
     /**
      * Full command manager client
@@ -124,10 +125,12 @@ public class CommandHandlerClient {
                     break;
                 case ("execute_script"):
                     try {
-                        Client.sendCommand(new CommandSerialize(command, argument), 1);
                         readScriptFile();
-                        DataController.flag = false;
-                        executeScript();
+                        if (isScriptFile) {
+                            Client.sendCommand(new CommandSerialize(command, argument), 1);
+                            DataController.flag = false;
+                            executeScript();
+                        }else new CommandHandlerClient();
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.err.println("Ошибка. Вы не ввели название файла");
                         new CommandHandlerClient();
@@ -222,7 +225,7 @@ public class CommandHandlerClient {
     /**
      * Method to read script file for execute_script command
      */
-    public void readScriptFile() {
+    public void readScriptFile() throws IOException, ClassNotFoundException {
         try {
             DataController.fis = new FileInputStream(argument);
             DataController.isr = new InputStreamReader(DataController.fis);
@@ -230,6 +233,7 @@ public class CommandHandlerClient {
             while (true) DataController.line.add(scanner.nextLine());
         } catch (FileNotFoundException e) {
             System.err.println("Ошибка. Файл не найден");
+            isScriptFile = false;
         } catch (NoSuchElementException | NullPointerException e) {
         } finally {
             try {
