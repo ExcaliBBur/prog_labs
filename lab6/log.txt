@@ -1,2 +1,6 @@
 апр 14, 2022 5:34:11 PM server.FileController readCollection
 INFO: Коллекция успешно загружена из файла!
+апр 14, 2022 5:34:24 PM server.Server receiveCommands
+INFO: Получена команда help от /127.0.0.1:54892
+апр 14, 2022 5:34:24 PM server.Server receiveCommands
+INFO: Получена команда help от /127.0.0.1:54892
