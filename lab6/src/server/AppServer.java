@@ -1,32 +1,32 @@
 package server;
 
-import com.company.utilities.FileController;
-
 import java.io.IOException;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.Selector;
 import java.util.Scanner;
 
+/**
+ * Class to run server
+ */
 public class AppServer {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         DatagramChannel dc = null;
         Selector selector = null;
-        Server server = new Server(dc ,selector);
+        Server server = new Server(dc, selector);
         server.run();
         FileController file = new FileController();
         file.readCollection();
         while (true) {
-            new Thread(()->{
+            new Thread(() -> {
                 Scanner scanner = new Scanner(System.in);
                 String input;
-                while(true) {
+                while (true) {
                     input = scanner.nextLine().toLowerCase();
-                    if(input.equals("exit")) {
+                    if (input.equals("exit")) {
                         Server.log.logger.info("Завершение работы сервера...");
                         System.exit(0);
-                    }
-                    else if (input.equals("save"))
+                    } else if (input.equals("save"))
                         file.writeCollection();
                 }
             }).start();
@@ -34,7 +34,8 @@ public class AppServer {
                 server.receiveCommands();
                 server.commandHandler();
                 server.sendToClient();
-            }catch (NullPointerException e){}
+            } catch (NullPointerException e) {
+            }
         }
     }
 }

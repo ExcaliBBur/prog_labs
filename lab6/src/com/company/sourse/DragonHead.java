@@ -7,21 +7,24 @@ public class DragonHead implements Serializable {
 
     /**
      * Set size
+     *
      * @param size size
      */
-    public DragonHead(Long size){
+    public DragonHead(Long size) {
         this.size = size;
     }
 
     /**
      * Method to get size
+     *
      * @return size
      */
-    public long getSize(){
+    public long getSize() {
         return size;
     }
+
     @Override
-    public String toString(){
-        return ""+size;
+    public String toString() {
+        return "" + size;
     }
 }

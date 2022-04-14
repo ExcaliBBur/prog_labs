@@ -13,9 +13,10 @@ public enum Color implements Serializable {
 
     /**
      * Get color value
+     *
      * @param value value
      */
-    private Color(int value){
+    private Color(int value) {
         this.value = value;
     }
 }

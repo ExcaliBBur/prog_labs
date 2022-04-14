@@ -14,7 +14,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Command controller class
+ * Command controller client class
  */
 public class CommandHandlerClient {
 
@@ -25,7 +25,10 @@ public class CommandHandlerClient {
     public static String error = "";
 
     /**
-     * Console
+     * Full command manager client
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
      */
     public CommandHandlerClient() throws IOException, ClassNotFoundException {
         try {
@@ -40,10 +43,13 @@ public class CommandHandlerClient {
                     System.out.println("Выполнение команды " + "\"" + DataController.strochka + "\"...");
                     try {
                         TimeUnit.SECONDS.sleep(1);
-                    } catch (InterruptedException ignored) {}
+                    } catch (InterruptedException ignored) {
+                    }
                     argument = temp[1];
                 }
-            }catch (ArrayIndexOutOfBoundsException ignored){};
+            } catch (ArrayIndexOutOfBoundsException ignored) {
+            }
+            ;
             switch (command) {
                 case ("show"):
                 case ("help"):
@@ -51,14 +57,14 @@ public class CommandHandlerClient {
                 case ("clear"):
                 case ("history"):
                 case ("average_of_wingspan"):
-                    Client.sendCommand(new CommandSerializable(command),1);
+                    Client.sendCommand(new CommandSerialize(command), 1);
                     break;
                 case ("add"):
-                    Client.sendCommand(new CommandSerializable(command),1);
+                    Client.sendCommand(new CommandSerialize(command), 1);
                     addCommand();
                     break;
                 case ("exit"):
-                    Client.sendCommand(new CommandSerializable(command),1);
+                    Client.sendCommand(new CommandSerialize(command), 1);
                     Client.exit();
                     break;
                 case ("replace_if_greater"):
@@ -66,7 +72,7 @@ public class CommandHandlerClient {
                 case ("update"):
                     try {
                         if (Integer.parseInt(argument) <= 0) throw new IncorrectIdException();
-                        Client.sendCommand(new CommandSerializable(command,argument),1);
+                        Client.sendCommand(new CommandSerialize(command, argument), 1);
                         Client.receiveError();
                         if (error.equals("false")) addCommand();
                     } catch (ArrayIndexOutOfBoundsException e) {
@@ -75,7 +81,7 @@ public class CommandHandlerClient {
                     } catch (NumberFormatException e) {
                         System.err.println("Ошибка. Ввёден неправильный аргумент команды");
                         new CommandHandlerClient();
-                    }catch (IncorrectIdException e){
+                    } catch (IncorrectIdException e) {
                         System.err.println("Ошибка. Id должен быть больше нуля.");
                         new CommandHandlerClient();
                     }
@@ -83,14 +89,14 @@ public class CommandHandlerClient {
                 case ("remove_key"):
                     try {
                         if (Integer.parseInt(argument) <= 0) throw new IncorrectIdException();
-                        Client.sendCommand(new CommandSerializable(command,argument),1);
+                        Client.sendCommand(new CommandSerialize(command, argument), 1);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.err.println("Ошибка. Вы не ввели аргумент команды.");
                         new CommandHandlerClient();
                     } catch (NumberFormatException e) {
                         System.err.println("Ошибка. Ввёден неправильный аргумент команды");
                         new CommandHandlerClient();
-                    }catch (IncorrectIdException e){
+                    } catch (IncorrectIdException e) {
                         System.err.println("Ошибка. Id должен быть больше нуля.");
                         new CommandHandlerClient();
                     }
@@ -102,7 +108,7 @@ public class CommandHandlerClient {
                 case ("insert"):
                     try {
                         if (Integer.parseInt(argument) <= 0) throw new IncorrectIdException();
-                        Client.sendCommand(new CommandSerializable(command,argument),1);
+                        Client.sendCommand(new CommandSerialize(command, argument), 1);
                         Client.receiveError();
                         if (error.equals("false")) insertCommand();
                     } catch (ArrayIndexOutOfBoundsException e) {
@@ -111,14 +117,14 @@ public class CommandHandlerClient {
                     } catch (NumberFormatException e) {
                         System.err.println("Ошибка. Ввёден неправильный аргумент команды");
                         new CommandHandlerClient();
-                    }catch (IncorrectIdException e){
+                    } catch (IncorrectIdException e) {
                         System.err.println("Ошибка. Id должен быть больше нуля.");
                         new CommandHandlerClient();
                     }
                     break;
                 case ("execute_script"):
                     try {
-                        Client.sendCommand(new CommandSerializable(command,argument),1);
+                        Client.sendCommand(new CommandSerialize(command, argument), 1);
                         readScriptFile();
                         DataController.flag = false;
                         executeScript();
@@ -130,14 +136,14 @@ public class CommandHandlerClient {
                 case ("count_less_than_color"):
                     try {
                         Color.valueOf(argument.toUpperCase(Locale.ROOT));
-                        Client.sendCommand(new CommandSerializable(command,argument),1);
+                        Client.sendCommand(new CommandSerialize(command, argument), 1);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.err.println("Ошибка. Вы не ввели аргумент команды");
                         new CommandHandlerClient();
                     } catch (NumberFormatException e) {
                         System.err.println("Ошибка. Ввёден неправильный аргумент команды");
                         new CommandHandlerClient();
-                    }catch (IllegalArgumentException e){
+                    } catch (IllegalArgumentException e) {
                         System.err.println("Ошибка. Данного цвета нет в списках.");
                         new CommandHandlerClient();
                     }
@@ -145,7 +151,7 @@ public class CommandHandlerClient {
                 case ("filter_less_than_weight"):
                     try {
                         Long.parseLong(argument);
-                        Client.sendCommand(new CommandSerializable(command,argument),1);
+                        Client.sendCommand(new CommandSerialize(command, argument), 1);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.err.println("Ошибка. Вы не ввели аргумент команды");
                         new CommandHandlerClient();
@@ -156,24 +162,24 @@ public class CommandHandlerClient {
                     break;
                 default:
                     System.err.println("Такой команды не найдено!Введите \"help\" для получения списка команд");
-                    if (!DataController.flag){
+                    if (!DataController.flag) {
                         try {
                             DataController.line.removeFirst();
                             DataController.strochka = DataController.line.getFirst();
-                        }catch (NoSuchElementException ignored){
+                        } catch (NoSuchElementException ignored) {
                             DataController.flag = true;
                             System.out.println("Переход в консольный режим...");
                         }
                     }
                     new CommandHandlerClient();
             }
-        }catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             System.err.println("Ошибка. Вы не ввели команду");
             if (!DataController.flag) {
                 try {
                     DataController.line.removeFirst();
                     DataController.strochka = DataController.line.getFirst();
-                }catch (NoSuchElementException ignored){
+                } catch (NoSuchElementException ignored) {
                     DataController.flag = true;
                     System.out.println("Переход в консольный режим...");
                 }
@@ -182,49 +188,79 @@ public class CommandHandlerClient {
         } catch (IOException | ClassNotFoundException e) {
         }
     }
+
+    /**
+     * Method to add Dragon
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void addCommand() throws IOException, ClassNotFoundException {
         DataController data = new DataController();
         Dragon dragon = new Dragon(DataController.getId(), data.getName(), data.getCoordinates(), DataController.getCreationDate(), data.getAge(), data.getWingspan(),
                 data.getWeight(), data.getColor(), data.getHead());
-        collection.put(dragon.getId(),dragon);
-        Client.sendCommand(collection,0);
+        collection.put(dragon.getId(), dragon);
+        Client.sendCommand(collection, 0);
         collection.clear();
     }
+
+    /**
+     * Method to insert Dragon
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void insertCommand() throws IOException, ClassNotFoundException {
         DataController data = new DataController("without id");
         Dragon dragon = new Dragon(DataController.getId(), data.getName(), data.getCoordinates(), DataController.getCreationDate(), data.getAge(), data.getWingspan(),
                 data.getWeight(), data.getColor(), data.getHead());
-        collection.put(dragon.getId(),dragon);
-        Client.sendCommand(collection,0);
+        collection.put(dragon.getId(), dragon);
+        Client.sendCommand(collection, 0);
         collection.clear();
     }
-    public void readScriptFile(){
+
+    /**
+     * Method to read script file for execute_script command
+     */
+    public void readScriptFile() {
         try {
             DataController.fis = new FileInputStream(argument);
             DataController.isr = new InputStreamReader(DataController.fis);
             Scanner scanner = new Scanner(DataController.isr);
             while (true) DataController.line.add(scanner.nextLine());
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.err.println("Ошибка. Файл не найден");
-        }catch (NoSuchElementException | NullPointerException e){
+        } catch (NoSuchElementException | NullPointerException e) {
         } finally {
-            try{
+            try {
                 DataController.fis.close();
-            }catch (IOException | NullPointerException ignored){}
-            try{
+            } catch (IOException | NullPointerException ignored) {
+            }
+            try {
                 DataController.isr.close();
-            }catch (IOException | NullPointerException ignored){}
+            } catch (IOException | NullPointerException ignored) {
+            }
         }
     }
+
+    /**
+     * Method to execute script
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void executeScript() throws IOException, ClassNotFoundException {
         boolean temp = false;
-        while (DataController.line.size() != 0){
+        while (DataController.line.size() != 0) {
             DataController.strochka = DataController.line.getFirst();
             Client.receiveAnswer();
             new CommandHandlerClient();
             try {
                 DataController.line.removeFirst();
-            }catch (NoSuchElementException ignored){temp = true;};
+            } catch (NoSuchElementException ignored) {
+                temp = true;
+            }
+            ;
         }
         if (!temp) {
             DataController.flag = true;

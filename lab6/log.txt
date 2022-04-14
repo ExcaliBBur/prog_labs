@@ -1,28 +1,12 @@
-апр 14, 2022 2:43:23 PM server.Server receiveCommands
-INFO: Получена команда help
-апр 14, 2022 2:47:47 PM com.company.utilities.FileController readCollection
+апр 14, 2022 5:16:01 PM server.FileController readCollection
 INFO: Коллекция успешно загружена из файла!
-апр 14, 2022 2:48:00 PM server.Server receiveCommands
-INFO: Получена команда help
-апр 14, 2022 2:50:19 PM com.company.utilities.FileController readCollection
-INFO: Коллекция успешно загружена из файла!
-апр 14, 2022 2:50:27 PM server.Server receiveCommands
-INFO: Получена команда helpот /127.0.0.1:63736
-апр 14, 2022 2:50:42 PM server.Server receiveCommands
-INFO: Получена команда insert с аргументом 90от /127.0.0.1:63736
-апр 14, 2022 2:50:46 PM server.Server receiveCollection
-INFO: Получен ответ от /127.0.0.1:63736
-апр 14, 2022 2:51:03 PM server.Server receiveCommands
-INFO: Получена команда showот /127.0.0.1:63736
-апр 14, 2022 2:51:05 PM server.Server receiveCommands
-INFO: Получена команда helpот /127.0.0.1:63736
-апр 14, 2022 2:51:31 PM server.Server receiveCommands
-INFO: Получена команда filter_less_than_weight с аргументом blackот /127.0.0.1:63736
-апр 14, 2022 2:52:35 PM com.company.utilities.FileController readCollection
-INFO: Коллекция успешно загружена из файла!
-апр 14, 2022 2:52:43 PM server.Server receiveCommands
-INFO: Получена команда filter_less_than_weight с аргументом black от /127.0.0.1:60021
-апр 14, 2022 2:54:28 PM com.company.utilities.FileController readCollection
-INFO: Коллекция успешно загружена из файла!
-апр 14, 2022 2:54:44 PM server.Server receiveCommands
-INFO: Получена команда filter_less_than_weight с аргументом 900 от /127.0.0.1:52236
+апр 14, 2022 5:16:05 PM server.Server receiveCommands
+INFO: Получена команда help от /127.0.0.1:58978
+апр 14, 2022 5:16:10 PM server.Server receiveCommands
+INFO: Получена команда count_less_than_color с аргументом brown от /127.0.0.1:58978
+апр 14, 2022 5:16:12 PM server.Server receiveCommands
+INFO: Получена команда exit от /127.0.0.1:58978
+апр 14, 2022 5:16:12 PM server.CommandHandlerServer executeCommand
+INFO: Клиент /127.0.0.1:58978 закончил работу
+апр 14, 2022 5:16:12 PM server.FileController writeCollection
+INFO: Коллекция успешно записана в файл!

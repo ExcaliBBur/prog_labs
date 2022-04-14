@@ -2,18 +2,23 @@ package Client;
 
 import java.io.Serializable;
 
-
-public class CommandSerializable implements Serializable {
+/**
+ * Class to serialize commands
+ */
+public class CommandSerialize implements Serializable {
     String command;
     String argument;
-    public CommandSerializable(String command){
+
+    public CommandSerialize(String command) {
         this.command = command;
     }
-    public CommandSerializable(String command, String argument){
+
+    public CommandSerialize(String command, String argument) {
         this.command = command;
         this.argument = argument;
     }
-    public String toString(){
+
+    public String toString() {
         if (argument != null) return command + " " + argument;
         else return command;
     }
