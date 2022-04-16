@@ -123,8 +123,14 @@ public class Server implements Serializable {
     public void sendToClient() throws IOException, ClassNotFoundException {
         buffer.clear();
         buffer.flip();
-        byte[] buff = CommandHandlerServer.executeCommand().toByteArray();
-        dc.send(ByteBuffer.wrap(buff), socketAddress);
+		byte[] buff = CommandHandlerServer.executeCommand().toByteArray();
+		final int INCREMENT = 2048;
+            for (int position = 0, limit = INCREMENT, capacity = 0; buff.length > capacity; position = limit,
+                            limit += INCREMENT) {
+                byte[] window = Arrays.copyOfRange(buff, position, limit);
+                capacity += limit - position;
+                dc.send(ByteBuffer.wrap(window),socketAddress);
+			}
     }
 
     /**

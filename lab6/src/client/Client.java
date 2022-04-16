@@ -52,7 +52,7 @@ public class Client implements Serializable {
      * @throws SocketException
      */
     public static void receiveAnswer() throws IOException, ClassNotFoundException, SocketException {
-        byte[] buff = new byte[10000];
+        byte[] buff = new byte[4096];
         DatagramPacket packet = new DatagramPacket(buff, buff.length);
         try {
             socket.receive(packet);
@@ -84,7 +84,7 @@ public class Client implements Serializable {
      * @throws StreamCorruptedException
      */
     public static void receiveError() throws IOException, ClassNotFoundException, StreamCorruptedException {
-        byte[] buff = new byte[1024];
+        byte[] buff = new byte[50];
         DatagramPacket packet = new DatagramPacket(buff, buff.length);
         try {
             socket.receive(packet);
