@@ -1,0 +1,14 @@
+мая 04, 2022 8:51:45 PM server.Receiver receive
+INFO: Получены данные от /127.0.0.1:53531
+мая 04, 2022 8:51:46 PM server.Receiver receive
+INFO: Получены данные от /127.0.0.1:53531
+мая 04, 2022 8:51:46 PM server.Receiver receive
+INFO: Получена команда show от /127.0.0.1:53531
+мая 04, 2022 8:51:48 PM server.Receiver receive
+INFO: Получены данные от /127.0.0.1:53531
+мая 04, 2022 8:51:48 PM server.Receiver receive
+INFO: Получена команда info от /127.0.0.1:53531
+мая 04, 2022 8:51:49 PM server.Receiver receive
+INFO: Получены данные от /127.0.0.1:53531
+мая 04, 2022 8:51:49 PM server.Receiver receive
+INFO: Получена команда help от /127.0.0.1:53531
