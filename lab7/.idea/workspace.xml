@@ -7,32 +7,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5b1fa30-4f03-4d8c-9080-d6a579a4cecb" name="Changes" comment="lox">
-      <change beforePath="$PROJECT_DIR$/../lab6/src/Collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/../lab6/src/Collection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab7/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/client/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab7/client/CommandHandlerClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/client/CommandHandlerClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab7/server/AppServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/AppServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/otchet/otchet.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/otchet/otchet.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/lab7_jar/lab7.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/lab7_jar/lab7.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/lab7/server/Collection/CollectionDownloader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/Collection/CollectionDownloader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab7/server/Collection/CollectionSorter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/Collection/CollectionSorter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/lab7/server/Collection/CollectionWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/Collection/CollectionWriter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab7/server/CommandHandlerServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/CommandHandlerServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab7/server/Const.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/Const.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/lab7/server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/CommandHandlerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/CommandHandlerClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/PasswordHasher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PasswordHasher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/utilities/Requester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/utilities/Requester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/utilities/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/utilities/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/utilities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/utilities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/AppServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/AppServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab7/server/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/user/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/Collection/CollectionDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Collection/CollectionDownloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/Collection/CollectionSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Collection/CollectionSorter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/Collection/CollectionWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Collection/CollectionWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/CommandHandlerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/CommandHandlerServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Const.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/FileController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/Receiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Receiver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/user/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
