@@ -86,7 +86,8 @@ public class CommandHandlerServer implements Serializable {
      */
     public static ByteArrayOutputStream showCommand() throws IOException {
         ConcurrentHashMap<Long, Dragon> collection = CollectionSorter.getCollection();
-        objectOutputStream.writeObject(collection.values().stream().reduce("", (concat, x) -> concat += x, String::format).trim());
+        //objectOutputStream.writeObject(collection.values().stream().reduce("", (concat, x) -> concat += x, String::format).trim());
+        objectOutputStream.writeObject(CollectionSorter.getCollectionForUser());
         objectOutputStream.flush();
         return byteArrayOutputStream;
     }

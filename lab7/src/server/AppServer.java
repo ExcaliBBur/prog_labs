@@ -73,7 +73,6 @@ public class AppServer {
                     new Thread(() -> {
                         try {
                             server.sendToClient();
-                            System.out.println("твет оотправлен");
                         } catch (IOException | SQLException | ClassNotFoundException ignored) {
                         }
                     }).start();

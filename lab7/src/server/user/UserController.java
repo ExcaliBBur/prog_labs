@@ -2,6 +2,7 @@ package server.user;
 
 import com.company.utilities.Requester;
 import com.company.utilities.User;
+import server.Connectivity;
 import server.Const;
 import com.company.utilities.Response;
 import server.Receiver;
@@ -11,7 +12,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.concurrent.RecursiveAction;
 
-public class UserController extends RecursiveAction {
+public class UserController extends RecursiveAction implements Connectivity {
     Connection connection;
     User user;
     public static java.util.Date lastInit;
@@ -37,8 +38,8 @@ public class UserController extends RecursiveAction {
             System.out.println("Ошибка подключения к БД");
         }
     }
-
-    private void getJDBCConnection() {
+    @Override
+    public void getJDBCConnection() {
         try {
             connection = DriverManager.getConnection(Const.jdbcURL, Const.NAME_ADMIN, Const.PASSWORD_ADMIN);
             user = Receiver.getUser();
@@ -48,7 +49,7 @@ public class UserController extends RecursiveAction {
     }
 
     private void registrateUser() throws IOException {
-        try (PreparedStatement ps = connection.prepareStatement("INSERT INTO " + Const.USER_TABLE + " values (?,?)")) {
+        try (PreparedStatement ps = connection.prepareStatement("INSERT INTO " + Const.USER_TABLE + " values (?,?) ;")) {
             if (isUserExist()) {
                 Server.sendResponseToClient(new Requester(Response.REG_ERROR));
             } else {
@@ -65,8 +66,8 @@ public class UserController extends RecursiveAction {
     }
 
     private boolean isUserExist() {
-        try (PreparedStatement ps = connection.prepareStatement("SELECT 1 FROM " + Const.USER_TABLE + "where " +
-                Const.USERNAME + " = ?")) {
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM " + Const.USER_TABLE + " where " +
+                Const.USERNAME + " = ? ;")) {
             ps.setString(1, user.getUsername());
             try (ResultSet resultSet = ps.executeQuery()) {
                 return resultSet.next();
@@ -78,16 +79,16 @@ public class UserController extends RecursiveAction {
     }
 
     private void authUser() {
-        try (PreparedStatement ps = connection.prepareStatement("SELECT 1 FROM " + Const.USER_TABLE + "where "
-                + Const.USERNAME + " = ? " + "and " + Const.PASSWORD + " = ?")) {
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM " + Const.USER_TABLE + " WHERE "
+                + Const.USERNAME + "= ? " + "and " + Const.PASSWORD + "= ? ;")) {
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
             try (ResultSet resultSet = ps.executeQuery()) {
                 if (!resultSet.next()) {
                     Server.sendResponseToClient(new Requester(Response.AUTH_ERROR));
                 } else {
-                    Server.sendResponseToClient(new Requester(Response.OK));
                     lastInit = new java.util.Date();
+                    Server.sendResponseToClient(new Requester(Response.OK));
                     connection.close();
                 }
             } catch (IOException e) {

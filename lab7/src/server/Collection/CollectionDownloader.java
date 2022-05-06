@@ -4,6 +4,7 @@ import com.company.sourse.Color;
 import com.company.sourse.Coordinates;
 import com.company.sourse.Dragon;
 import com.company.sourse.DragonHead;
+import server.Connectivity;
 import server.Const;
 
 
@@ -18,7 +19,7 @@ import java.util.concurrent.RecursiveAction;
 /**
  * Class to download collection from DB
  */
-public class CollectionDownloader extends RecursiveAction {
+public class CollectionDownloader extends RecursiveAction implements Connectivity {
     private Connection connection;
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -33,7 +34,7 @@ public class CollectionDownloader extends RecursiveAction {
     static ConcurrentHashMap<Long, Dragon> collection = new ConcurrentHashMap<>();
 
 
-    public CollectionDownloader() {
+    public CollectionDownloader(){
     }
 
     /**
@@ -48,9 +49,10 @@ public class CollectionDownloader extends RecursiveAction {
     /**
      * Method to get connection with DB
      */
+    @Override
     public void getJDBCConnection() {
         try {
-            connection = DriverManager.getConnection(Const.jdbcURL, Const.NAME_ADMIN, Const.PASSWORD_ADMIN);
+            connection = DriverManager.getConnection(Const.jdbcURL,Const.NAME_ADMIN,Const.PASSWORD_ADMIN);
         } catch (SQLException e) {
             System.out.println("Невозможно подключиться к БД");
         }
@@ -61,7 +63,7 @@ public class CollectionDownloader extends RecursiveAction {
      */
     public void getCollectionFromDB() {
         try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM " + Const.DRAGON_TABLE);
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM " + Const.DRAGON_TABLE + " ;");
             while (resultSet.next()) {
                 id = resultSet.getInt(1);
                 name = resultSet.getString(2).trim();

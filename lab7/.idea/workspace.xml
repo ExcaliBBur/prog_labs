@@ -2,37 +2,34 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="lab7:jar" />
+      <artifact name="server:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5b1fa30-4f03-4d8c-9080-d6a579a4cecb" name="Changes" comment="lox">
-      <change beforePath="$PROJECT_DIR$/../lab6/src/Collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/../lab6/src/Collection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/lab7_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab7/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/client/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab7/client/CommandHandlerClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/client/CommandHandlerClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/lab7_jar/lab7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/lab7_jar/log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab7/Collection.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab7/script.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/script.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/lab7/server/AppServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/AppServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/lab7/server/Collection/CollectionDownloader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/Collection/CollectionDownloader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/lab7/server/Collection/CollectionSorter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/Collection/CollectionSorter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/lab7/server/Collection/CollectionWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/Collection/CollectionWriter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/lab7/server/CommandHandlerServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/CommandHandlerServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/lab7/server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/CommandHandlerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/CommandHandlerClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/PasswordHasher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PasswordHasher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/utilities/Requester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/utilities/Requester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/utilities/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/utilities/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/utilities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/utilities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab7/server/Const.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/Const.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab7/server/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab7/server/user/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Collection.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/script.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/script.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/AppServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/AppServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/Collection/CollectionDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Collection/CollectionDownloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/Collection/CollectionSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Collection/CollectionSorter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/Collection/CollectionWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Collection/CollectionWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/CommandHandlerServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/CommandHandlerServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Const.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/FileController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/Receiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Receiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/user/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +43,7 @@
         <option value="package.json" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -127,6 +125,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/postgresql-42.3.4.jar" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -260,6 +260,8 @@
       <workItem from="1651494877915" duration="21962000" />
       <workItem from="1651587300714" duration="5849000" />
       <workItem from="1651661308987" duration="22050000" />
+      <workItem from="1651755406368" duration="14707000" />
+      <workItem from="1651861900163" duration="697000" />
     </task>
     <task id="LOCAL-00001" summary="lox">
       <created>1643567577000</created>
