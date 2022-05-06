@@ -2,7 +2,11 @@ package server.user;
 
 import com.company.utilities.Requester;
 import com.company.utilities.User;
+<<<<<<< HEAD
 import server.Collection.Connectivity;
+=======
+import server.Connectivity;
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
 import server.Const;
 import com.company.utilities.Response;
 import server.Receiver;
@@ -49,7 +53,11 @@ public class UserController extends RecursiveAction implements Connectivity {
     }
 
     private void registrateUser() throws IOException {
+<<<<<<< HEAD
         try (PreparedStatement ps = connection.prepareStatement("INSERT INTO " + Const.USER_TABLE + " values (?,?)")) {
+=======
+        try (PreparedStatement ps = connection.prepareStatement("INSERT INTO " + Const.USER_TABLE + " values (?,?) ;")) {
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
             if (isUserExist()) {
                 Server.sendResponseToClient(new Requester(Response.REG_ERROR));
             } else {
@@ -66,8 +74,13 @@ public class UserController extends RecursiveAction implements Connectivity {
     }
 
     private boolean isUserExist() {
+<<<<<<< HEAD
         try (PreparedStatement ps = connection.prepareStatement("SELECT 1 FROM " + Const.USER_TABLE + " where " +
                 Const.USERNAME + " = ?")) {
+=======
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM " + Const.USER_TABLE + " where " +
+                Const.USERNAME + " = ? ;")) {
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
             ps.setString(1, user.getUsername());
             try (ResultSet resultSet = ps.executeQuery()) {
                 return resultSet.next();
@@ -79,16 +92,26 @@ public class UserController extends RecursiveAction implements Connectivity {
     }
 
     private void authUser() {
+<<<<<<< HEAD
         try (PreparedStatement ps = connection.prepareStatement("SELECT 1 FROM " + Const.USER_TABLE + " where "
                 + Const.USERNAME + " = ? " + "and " + Const.PASSWORD + " = ?")) {
+=======
+        try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM " + Const.USER_TABLE + " WHERE "
+                + Const.USERNAME + "= ? " + "and " + Const.PASSWORD + "= ? ;")) {
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
             try (ResultSet resultSet = ps.executeQuery()) {
                 if (!resultSet.next()) {
                     Server.sendResponseToClient(new Requester(Response.AUTH_ERROR));
                 } else {
+<<<<<<< HEAD
                     Server.sendResponseToClient(new Requester(Response.OK));
                     lastInit = new java.util.Date();
+=======
+                    lastInit = new java.util.Date();
+                    Server.sendResponseToClient(new Requester(Response.OK));
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
                     connection.close();
                 }
             } catch (IOException e) {

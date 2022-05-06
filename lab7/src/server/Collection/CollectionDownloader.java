@@ -4,25 +4,40 @@ import com.company.sourse.Color;
 import com.company.sourse.Coordinates;
 import com.company.sourse.Dragon;
 import com.company.sourse.DragonHead;
+<<<<<<< HEAD
 import server.AppServer;
 import server.Const;
 
 
 import java.io.Console;
+=======
+import server.Connectivity;
+import server.Const;
+
+
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+<<<<<<< HEAD
 import java.util.Scanner;
+=======
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.RecursiveAction;
 
 /**
  * Class to download collection from DB
  */
+<<<<<<< HEAD
 public class CollectionDownloader extends RecursiveAction implements Connectivity{
     private static Connection connection;
+=======
+public class CollectionDownloader extends RecursiveAction implements Connectivity {
+    private Connection connection;
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
@@ -36,7 +51,11 @@ public class CollectionDownloader extends RecursiveAction implements Connectivit
     static ConcurrentHashMap<Long, Dragon> collection = new ConcurrentHashMap<>();
 
 
+<<<<<<< HEAD
     public CollectionDownloader() {
+=======
+    public CollectionDownloader(){
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
     }
 
     /**
@@ -47,6 +66,7 @@ public class CollectionDownloader extends RecursiveAction implements Connectivit
         getJDBCConnection();
         getCollectionFromDB();
     }
+<<<<<<< HEAD
     public static void getPasswordForDB() {
         Console console = System.console();
         if (console != null) {
@@ -59,17 +79,25 @@ public class CollectionDownloader extends RecursiveAction implements Connectivit
         getTestJDBCConnection();
         AppServer.flag = true;
     }
+=======
+
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
     /**
      * Method to get connection with DB
      */
     @Override
     public void getJDBCConnection() {
         try {
+<<<<<<< HEAD
             connection = DriverManager.getConnection(Const.jdbcURL, Const.NAME_ADMIN, Const.PASSWORD_ADMIN);
+=======
+            connection = DriverManager.getConnection(Const.jdbcURL,Const.NAME_ADMIN,Const.PASSWORD_ADMIN);
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
         } catch (SQLException e) {
             System.out.println("Невозможно подключиться к БД");
         }
     }
+<<<<<<< HEAD
     /**
      * Method to get test connection with DB
      */
@@ -81,12 +109,19 @@ public class CollectionDownloader extends RecursiveAction implements Connectivit
             getPasswordForDB();
         }
     }
+=======
+
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
     /**
      * Method to get collection from DB
      */
     public void getCollectionFromDB() {
         try (Statement statement = connection.createStatement()) {
+<<<<<<< HEAD
             ResultSet resultSet = statement.executeQuery("SELECT * FROM " + Const.DRAGON_TABLE );
+=======
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM " + Const.DRAGON_TABLE + " ;");
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
             while (resultSet.next()) {
                 id = resultSet.getInt(1);
                 name = resultSet.getString(2).trim();

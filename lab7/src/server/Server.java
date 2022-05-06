@@ -15,7 +15,10 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.sql.SQLException;
 import java.util.Arrays;
+<<<<<<< HEAD
 import java.util.Scanner;
+=======
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.RecursiveAction;
@@ -68,6 +71,34 @@ public class Server extends RecursiveAction implements Serializable {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Method to receive collection(add(or same) commands) from user
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public static void receiveCollection() throws IOException, ClassNotFoundException {
+        selector.select();
+        Set<SelectionKey> keys = selector.selectedKeys();
+        for (SelectionKey key : keys) {
+            if (key.isReadable()) {
+                buffer.clear();
+                socketAddress = dc.receive(buffer);
+                log.logger.info("Получен ответ от " + socketAddress);
+                buffer.flip();
+                int limit = buffer.limit();
+                byte[] bytes = new byte[limit];
+                buffer.get(bytes, 0, limit);
+                ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(bytes));
+                collection = (ConcurrentHashMap<Long, Dragon>) objectInputStream.readObject();
+                CollectionSorter.collection.putAll(collection);
+            }
+        }
+    }
+
+    /**
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
      * Method to start to manage commands
      */
     public void commandHandler(String commands) {
@@ -119,6 +150,10 @@ public class Server extends RecursiveAction implements Serializable {
         objectOutputStream.writeObject(requester);
         objectOutputStream.flush();
         byte[] buff = byteArrayOutputStream.toByteArray();
+<<<<<<< HEAD
+=======
+        System.out.println(socketAddress);
+>>>>>>> 9f538714d29227ba0f15670f8aa7bc0599191580
         dc.send(ByteBuffer.wrap(buff), socketAddress);
     }
 
