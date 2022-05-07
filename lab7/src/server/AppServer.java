@@ -16,6 +16,7 @@ import java.util.concurrent.*;
  */
 public class AppServer {
     public static boolean flag = false;
+
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException, ExecutionException, SQLException, TimeoutException {
         DatagramChannel dc = null;
         Selector selector = null;
@@ -36,7 +37,8 @@ public class AppServer {
                 }
             }
         }).start();
-
+        UserController userController = new UserController();
+        CollectionDownloader collectionDownloader = new CollectionDownloader(true);
         while (true) {
             executorService.submit(() -> {
                 try {
@@ -45,14 +47,13 @@ public class AppServer {
                 } catch (IOException | ClassNotFoundException ignored) {
                 }
             }).get();
-            System.out.println(receiver.getResponse());
             switch (receiver.getResponse()) {
                 case AUTH:
-                    forkJoinPool.invoke(new UserController());
+                    forkJoinPool.invoke(userController);
                     break;
                 case COMMAND:
-                    forkJoinPool.invoke(new CollectionDownloader());
-                    forkJoinPool.invoke(new Server());
+                    forkJoinPool.invoke(collectionDownloader);
+                    forkJoinPool.invoke(server);
                     new Thread(() -> {
                         try {
                             server.sendToClient();
@@ -61,8 +62,8 @@ public class AppServer {
                     }).start();
                     break;
                 case ADD_COMMAND:
-                    forkJoinPool.invoke(new CollectionDownloader());
-                    forkJoinPool.invoke(new Server());
+                    forkJoinPool.invoke(collectionDownloader);
+                    forkJoinPool.invoke(server);
                     executorService.submit(() -> {
                         try {
                             receiver.receiveCollection();
@@ -74,7 +75,6 @@ public class AppServer {
                     new Thread(() -> {
                         try {
                             server.sendToClient();
-                            System.out.println("твет оотправлен");
                         } catch (IOException | SQLException | ClassNotFoundException ignored) {
                         }
                     }).start();

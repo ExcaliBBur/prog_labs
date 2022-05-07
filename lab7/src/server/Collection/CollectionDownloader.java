@@ -36,15 +36,15 @@ public class CollectionDownloader extends RecursiveAction implements Connectivit
     static ConcurrentHashMap<Long, Dragon> collection = new ConcurrentHashMap<>();
 
 
-    public CollectionDownloader() {
+    public CollectionDownloader(boolean connectivity) {
+        getJDBCConnection();
     }
-
+    public CollectionDownloader() {};
     /**
      * Method to FJP
      */
     @Override
     protected void compute() {
-        getJDBCConnection();
         getCollectionFromDB();
     }
     public static void getPasswordForDB() {

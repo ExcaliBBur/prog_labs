@@ -1,2 +1,14 @@
-мая 06, 2022 10:52:55 PM server.Receiver receive
-INFO: Получены данные от /127.0.0.1:59278
+мая 07, 2022 9:37:00 PM server.Receiver receive
+INFO: Получены данные от /127.0.0.1:63723
+мая 07, 2022 9:37:03 PM server.Receiver receive
+INFO: Получены данные от /127.0.0.1:63723
+мая 07, 2022 9:37:06 PM server.Receiver receive
+INFO: Получены данные от /127.0.0.1:63723
+мая 07, 2022 9:37:09 PM server.Receiver receive
+INFO: Получены данные от /127.0.0.1:63723
+мая 07, 2022 9:37:12 PM server.Receiver receive
+INFO: Получены данные от /127.0.0.1:63723
+мая 07, 2022 9:37:15 PM server.Receiver receive
+INFO: Получены данные от /127.0.0.1:63723
+мая 07, 2022 9:37:18 PM server.Receiver receive
+INFO: Получены данные от /127.0.0.1:63723
